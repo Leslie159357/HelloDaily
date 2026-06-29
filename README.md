@@ -40,4 +40,4 @@ HelloDaily/
 
 ---
 
-*🤖 由 [Hermes Agent](https://hermes-agent.nousresearch.com/) 自动生成 · 每天 09:00 更新*
+*每天 09:00 自动更新*

@@ -204,10 +204,31 @@ def generate_markdown(repos):
                 md += f"   {desc}\n"
             md += "\n"
 
+    # 上一期/下一期 导航
+    filepath = os.path.join(content_dir, f"HelloDaily-{today}.md")
+    all_files = sorted(glob.glob(os.path.join(content_dir, "HelloDaily-*.md")))
+    prev_link = ""
+    next_link = ""
+    for i, f in enumerate(all_files):
+        if f == filepath:
+            if i > 0:
+                prev_name = os.path.basename(all_files[i-1])
+                prev_num = i  # 第 {i} 期
+                prev_link = f'<a href="content/{prev_name}">『上一期』</a>'
+            if i < len(all_files) - 1:
+                next_name = os.path.basename(all_files[i+1])
+                next_num = i + 2  # 第 {i+2} 期
+                next_link = f'<a href="content/{next_name}">『下一期』</a>'
+            break
+
     md += "\n\n"
-    md += f'<p align="center">\n'
-    md += f'    <a href="https://github.com/Leslie159357/HelloDaily">『GitHub』</a>\n'
-    md += f'</p>\n\n'
+    nav_parts = []
+    if prev_link:
+        nav_parts.append(prev_link)
+    nav_parts.append(f'<a href="https://github.com/Leslie159357/HelloDaily">『GitHub』</a>')
+    if next_link:
+        nav_parts.append(next_link)
+    md += f'<p align="center">\n    {" | ".join(nav_parts)}\n</p>\n\n'
     md += "---\n"
     md += f'<p align="center">\n'
     md += f'    👉 每天 09:00 自动更新 · GitHub Trending 精选 👈<br>\n'

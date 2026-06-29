@@ -56,7 +56,7 @@
 
 ### 📦 其他
 
-1、[ByteByteGoHq/system-design-101](https://github.com/ByteByteGoHq/system-design-101) 🌟 +250/日
+1、[ByteByteGoHq/system-design-101](https://github.com/ByteByteGoHq/system-design-101) 🌟 84,870 +250/日
    用图解和通俗语言解释复杂系统设计，涵盖分布式系统、数据库、缓存、消息队列等核心概念。每个主题配有精美图示，适合准备系统设计面试或想了解大型系统怎么搭建的开发者。
 
 

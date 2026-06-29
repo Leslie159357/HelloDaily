@@ -65,6 +65,35 @@ def fetch_by_volume(volume):
     return repos
 
 
+def fetch_stars(repos):
+    """从 GitHub API 批量获取 star 数"""
+    token = os.environ.get("GITHUB_TOKEN", "")
+    headers = {
+        "User-Agent": "HelloDaily/1.0",
+        "Accept": "application/vnd.github.v3+json",
+    }
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+
+    count = 0
+    for r in repos:
+        if r["stars"] or not r["name"]:
+            continue
+        try:
+            url = f"https://api.github.com/repos/{r['name']}"
+            req = urllib.request.Request(url, headers=headers)
+            resp = urllib.request.urlopen(req, timeout=5)
+            data = json_mod.loads(resp.read().decode("utf-8"))
+            if "stargazers_count" in data:
+                r["stars"] = f"{data['stargazers_count']:,}"
+                count += 1
+        except Exception:
+            pass
+    if count:
+        print(f"⭐ 获取到 {count} 个项目的 star 数")
+    return repos
+
+
 def fetch_trending():
     """从 GitHub Trending 补充热门项目"""
     url = "https://github.com/trending"
@@ -332,6 +361,10 @@ if __name__ == "__main__":
             existing_names.add(r["name"])
             new_count += 1
     print(f"✅ Trending 补充了 {new_count} 个新项目")
+
+    # 3. 获取 star 数
+    print("⭐ 正在查询项目 star 数...")
+    repos = fetch_stars(repos)
 
     # 生成
     md, issue_num, today = generate_markdown(repos, volume)

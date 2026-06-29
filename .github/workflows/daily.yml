@@ -22,6 +22,8 @@ jobs:
 
       - name: 运行 HelloDaily
         run: python3 hellodaily.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 提交并推送
         run: |

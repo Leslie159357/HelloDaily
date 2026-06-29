@@ -232,14 +232,27 @@ def lang_emoji(lang):
 
 
 def generate_markdown(repos):
-    today = date.today().isoformat()
+    today_dt = date.today()
+    today = today_dt.isoformat()
     content_dir = os.path.join(OUTPUT_DIR, "content")
 
-    # 计算期号: 从已有 content 文件推断
+    # 计算期号: 基于首期日期推算
     import glob
     existing = sorted(glob.glob(os.path.join(content_dir, "HelloDaily-*.md")))
-    issue_num = len(existing)  # 已有文件数 = 当前期号
-    if issue_num == 0:
+    first_date = None
+    for f in existing:
+        import re as re_mod
+        m = re_mod.search(r'HelloDaily-(\d{4}-\d{2}-\d{2})', f)
+        if m:
+            try:
+                fd = date.fromisoformat(m.group(1))
+                if first_date is None or fd < first_date:
+                    first_date = fd
+            except:
+                pass
+    if first_date:
+        issue_num = (today_dt - first_date).days + 1
+    else:
         issue_num = 1
 
     issue_str = f"第 {issue_num:03d} 期"

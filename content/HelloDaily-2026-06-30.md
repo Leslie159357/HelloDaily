@@ -1,4 +1,4 @@
-# 《HelloDaily》第 003 期
+# 《HelloDaily》第 002 期
 > 兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！
 
 ## 目录
@@ -10,62 +10,62 @@
 
 ### 🐍 Python
 
-1、[cupy/cupy](https://github.com/cupy/cupy) 🌟 11,795 +352/日
-   将NumPy和SciPy的科学计算能力移植到GPU上运行，大幅提升矩阵运算和数值分析速度。数据处理快如闪电，是机器学习/深度学习研究者的算力加速神器。
+1、[cupy/cupy](https://github.com/cupy/cupy) 🌟 11,796 +352/日
+   该项目将NumPy和SciPy科学计算库移植到GPU运行，让数据处理速度飞升。就像给数学引擎装上火箭推进器，特别适合机器学习和大规模数值计算场景。
 
 2、[soxoj/maigret](https://github.com/soxoj/maigret) 🌟 34,309 +191/日
-   通过用户名即可从3000+网站自动收集人物档案，网络侦探的终极工具。输入一个ID，就能生成包含社交足迹、活动记录等信息的完整数字画像。
+   这款工具能通过用户名在3000多个网站自动收集个人信息，像数字侦探一样构建完整档案。适用于背景调查或网络安全研究，但请遵守法律和道德规范使用。
 
-3、[commaai/openpilot](https://github.com/commaai/openpilot) 🌟 62,734 +465/日
-   openpilot是开源自动驾驶操作系统，目前支持300多款车型的辅助驾驶升级。用代码赋予爱车更智能的跟车、车道保持能力，极客车主的改装利器。
+3、[commaai/openpilot](https://github.com/commaai/openpilot) 🌟 62,735 +465/日
+   openpilot是开源的自动驾驶系统，可兼容300多款车型。它升级原厂辅助驾驶功能，让普通汽车也能获得接近特斯拉的智能巡航体验，是极客车主的最爱。
 
 4、[xbtlin/ai-berkshire](https://github.com/xbtlin/ai-berkshire) 🌟 6,541 +1,397/日
-   用AI重构价值投资：融合巴菲特等四位大师方法论，通过多智能体协同分析上市公司。输入股票代码，获得堪比专业投研团队的AI深度报告。
+   该项目将巴菲特价值投资理念AI化，通过多智能体模拟四大投资大师的决策逻辑。像拥有全天候工作的数字投资顾问，辅助用户进行深度基本面分析。
 
 5、[browser-use/video-use](https://github.com/browser-use/video-use) 🌟 11,852 +976/日
-   用代码代替剪辑软件，通过自然语言指令自动处理视频素材。批量转码、智能卡点、特效添加，视频创作者的编程式生产力工具。
+   用代码控制视频剪辑，像编程一样精确处理每一帧画面。适合需要批量处理或实现特殊效果的创作者，让视频编辑变得可编程化。
 
 6、[Unclecheng-li/VulnClaw](https://github.com/Unclecheng-li/VulnClaw) 🌟 1,097 +105/日
-   网络安全自动化利器：用自然语言描述目标，AI会自主完成从信息收集到漏洞利用的全流程渗透测试，最后自动生成专业报告，白帽黑客的智能助手。
+   这款AI渗透测试工具能听懂自然语言指令，自动完成从信息收集到漏洞利用的全流程。就像数字世界的"白帽黑客"，帮助安全人员高效排查系统风险。
 
 7、[HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) 🌟 15,021 +840/日
-   Vibe-Trading是懂情绪波动的交易助手，实时分析市场氛围生成操作建议。不管你是技术派还是基本面派，都能获得个性化的AI交易策略。
+   Vibe-Trading是智能交易助手，能分析市场情绪并执行策略。像有个华尔街老手在你耳边提醒，帮助把握最佳买卖时机，适合加密货币和股票投资者。
 
 ### 🐚 Shell
 
-1、[msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) 🌟 118,749 +1,221/日
-   这个AI代理团队就像你的数字智囊团，从前端开发到社区运营，从创意激发到事实核查，每个AI都具备独特专长和人格。只需简单指令，就能获得专业级交付成果，堪称全能虚拟员工集合体。
+1、[msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) 🌟 118,753 +1,221/日
+   这个AI代理集合如同虚拟智囊团，包含前端开发、社区运营等各领域专家角色。每个代理都有独特个性和专业流程，能像真人团队一样协作处理任务，轻松应对复杂项目需求。
 
-2、[0xNyk/council-of-high-intelligence](https://github.com/0xNyk/council-of-high-intelligence) 🌟 1,807 +323/日
-   18位AI智者天团（包括亚里士多德、费曼等虚拟人格）通过多轮辩论帮你决策。接入不同大模型确保多样性，输入/council即可启动跨时空头脑风暴。
+2、[0xNyk/council-of-high-intelligence](https://github.com/0xNyk/council-of-high-intelligence) 🌟 1,808 +323/日
+   18位AI"名人顾问团"可多轮审议你的难题，包含亚里士多德、费曼等不同思维模式。输入/council命令就能获得跨模型的多元建议，打破单一AI的思维局限。
 
 ### 🔷 TypeScript
 
-1、[logto-io/logto](https://github.com/logto-io/logto) 🌟 12,583 +77/日
-   专为SaaS和AI应用打造的身份认证系统，支持多租户、单点登录和权限管理。开发者只需几行代码，就能为产品接入企业级安全防护。
+1、[logto-io/logto](https://github.com/logto-io/logto) 🌟 12,584 +77/日
+   这套认证系统为SaaS应用提供专业级安全防护，支持多租户管理和单点登录。就像数字门禁系统，帮助企业快速实现精细化的权限控制。
 
-2、[refactoringhq/tolaria](https://github.com/refactoringhq/tolaria) 🌟 17,468 +249/日
-   桌面级Markdown知识库管理工具，像整理数字书房一样组织你的笔记、代码片段和文档。支持双向链接和全局搜索，写作者的第二大脑。
+2、[refactoringhq/tolaria](https://github.com/refactoringhq/tolaria) 🌟 17,469 +249/日
+   这款桌面应用专为Markdown笔记爱好者设计，像数字书房般管理知识库。支持双向链接和全文搜索，让零散笔记形成有机知识网络。
 
 ### 📦 Haskell
 
-1、[simplex-chat/simplex-chat](https://github.com/simplex-chat/simplex-chat) 🌟 16,440 +1,611/日
-   SimpleX 是一款彻底匿名的即时通讯工具，首创无用户标识设计，连手机号或邮箱都不需要。提供iOS/Android/桌面客户端，隐私保护直达骨髓，适合追求绝对安全的通讯场景。
+1、[simplex-chat/simplex-chat](https://github.com/simplex-chat/simplex-chat) 🌟 16,441 +1,611/日
+   SimpleX是一款彻底匿名的即时通讯工具，首创无ID设计，无需手机号或邮箱即可注册。它像数字世界的隐形信使，通过端到端加密保护聊天隐私，适合注重安全性的用户日常沟通。
 
 ### 🍎 Swift
 
-1、[altic-dev/FluidVoice](https://github.com/altic-dev/FluidVoice) 🌟 4,315 +836/日
-   FluidVoice是macOS平台最快的离线语音转文字工具，所有识别都在本地完成，零隐私顾虑。会议记录/灵感速记的完美搭档，一颗星就是对我们最大的支持！
+1、[altic-dev/FluidVoice](https://github.com/altic-dev/FluidVoice) 🌟 4,316 +836/日
+   FluidVoice是Mac平台最快的离线语音转文字工具，所有识别都在本地完成。无需联网就能实时记录会议内容，隐私有保障，识别准确度媲美云端服务。
 
 ### 🌐 HTML
 
 1、[ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) 🌟 126,651 +1,971/日
-   这份清单整理了DevOps工程师最爱的免费云服务，涵盖SaaS/PaaS/IaaS各领域。从服务器托管到监控工具，帮你精打细算用好每一分云预算。
+   这份清单整理了各类云服务的免费套餐，从服务器到数据库应有尽有。开发者可以像淘金一样在这里发现实用资源，显著降低项目试错成本。
 
 ### 💠 C
 
 1、[veracrypt/VeraCrypt](https://github.com/veracrypt/VeraCrypt) 🌟 10,443 +187/日
-   基于TrueCrypt的磁盘加密工具，提供军事级安全防护。全盘加密/隐藏分区等功能一应俱全，守护敏感数据的数字保险箱。
+   基于TrueCrypt的磁盘加密工具，提供军事级数据保护。像给硬盘装上保险箱，即使设备丢失也不用担心敏感信息泄露。
 
 
 

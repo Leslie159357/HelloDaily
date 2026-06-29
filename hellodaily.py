@@ -110,11 +110,21 @@ def fetch_trending(language=""):
         lang_match = re.search(r'<span[^>]*itemprop="programmingLanguage"[^>]*>(.*?)</span>', art, re.DOTALL)
         lang = lang_match.group(1).strip() if lang_match else ""
 
-        # Stars (total)
-        stars_match = re.search(r'<a[^>]*href="/' + re.escape(full_name) + r'/stargazers"[^>]*>.*?<strong>(.*?)</strong>', art, re.DOTALL)
+        # Stars (total) - try multiple patterns
         stars = ""
-        if stars_match:
-            stars = stars_match.group(1).strip()
+        for s_pattern in [
+            r'<a[^>]*href="/' + re.escape(full_name) + r'/stargazers"[^>]*>.*?<strong>(.*?)</strong>',
+            r'<a[^>]*href="/' + re.escape(full_name) + r'/stargazers"[^>]*>.*?([\d,]+)\s*</a>',
+            r'star-count[^>]*>[\s\n]*([\d,]+)',
+            r'aria-label="[^"]*([\d,]+)\s*star',
+        ]:
+            s_match = re.search(s_pattern, art, re.DOTALL)
+            if s_match:
+                stars = s_match.group(1).strip().replace(",", "")
+                if stars.isdigit():
+                    # format with commas
+                    stars = f"{int(stars):,}"
+                    break
 
         # Stars today
         today_match = re.search(r'<span[^>]*class="[^"]*d-inline-block[^"]*float-sm-right[^"]*"[^>]*>.*?([\d,]+)\s*stars\s*today', art, re.DOTALL)

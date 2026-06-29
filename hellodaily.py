@@ -161,12 +161,14 @@ def translate_descriptions(repos):
     lines = []
     for i, r in enumerate(repos):
         if r["desc"]:
-            lines.append(f"{i+1}. {r['name']}: {r['desc']}")
+            # Strip leading emojis from raw desc
+            clean_desc = re.sub(r'^[^\w\d]*', '', r["desc"]).strip()
+            lines.append(f"{i+1}. {clean_desc}")
 
     if not lines:
         return repos
 
-    prompt = "把以下 GitHub 开源项目的英文简介翻译成简洁的中文（20字以内），只返回编号+译文，每行一条：\n\n" + "\n".join(lines)
+    prompt = "将以下GitHub项目简介翻译成中文，要求信息完整、保留技术术语，不添加编号和项目名，直接给出译文：\n\n" + "\n".join(lines)
 
     data = json_mod.dumps({
         "model": "deepseek-ai/DeepSeek-V3",

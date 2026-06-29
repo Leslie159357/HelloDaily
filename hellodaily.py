@@ -170,29 +170,41 @@ def generate_markdown(repos):
     # Sort languages by repo count
     sorted_langs = sorted(by_lang.keys(), key=lambda l: len(by_lang[l]), reverse=True)
 
-    md = f"# HelloDaily · {issue_str} · {today}\n"
-    md += "> GitHub Trending 每日精选\n\n"
+    md = f"# 《HelloDaily》{issue_str}\n"
+    md += f"> 兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！\n\n"
+    md += f'<p align="center">\n'
+    md += f'  <img src="https://raw.githubusercontent.com/521xueweihan/img_logo/master/logo/readme.gif"/>\n'
+    md += f'</p>\n\n'
+    md += f"## 目录\n\n"
+    md += f"（点击右上角目录图标）\n\n"
+    md += f"## 内容\n"
+    md += f"> 以下为本期内容｜每天 09:00 更新\n\n"
 
     for lang in sorted_langs:
         items = by_lang[lang]
         emoji = lang_emoji(lang)
         md += f"### {emoji} {lang}\n\n"
-        for r in items:
+        for idx, r in enumerate(items, 1):
             stars_str = f"🌟 {r['stars']}" if r['stars'] else ""
             today_str = f" +{r['stars_today']}/日" if r['stars_today'] else ""
             badge = f"{stars_str}{today_str}" if (stars_str or today_str) else ""
-            md += f"1. **[`{r['name']}`](https://github.com/{r['name']})**"
+            md += f"{idx}、[{r['name']}](https://github.com/{r['name']})"
             if badge:
                 md += f" {badge}"
             md += "\n"
             if r['desc']:
-                # Truncate very long descriptions
                 desc = r['desc'][:200] + "…" if len(r['desc']) > 200 else r['desc']
                 md += f"   {desc}\n"
             md += "\n"
 
+    md += "\n\n"
+    md += f'<p align="center">\n'
+    md += f'    <a href="https://github.com/Leslie159357/HelloDaily">『GitHub』</a>\n'
+    md += f'</p>\n\n'
     md += "---\n"
-    md += f"*由 HelloDaily 自动生成 · {today}*\n"
+    md += f'<p align="center">\n'
+    md += f'    👉 每天 09:00 自动更新 · GitHub Trending 精选 👈<br>\n'
+    md += f'</p>\n'
     return md, issue_num, today
 
 

@@ -172,9 +172,6 @@ def generate_markdown(repos):
 
     md = f"# 《HelloDaily》{issue_str}\n"
     md += f"> 兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！\n\n"
-    md += f'<p align="center">\n'
-    md += f'  <img src="https://raw.githubusercontent.com/521xueweihan/img_logo/master/logo/readme.gif"/>\n'
-    md += f'</p>\n\n'
     md += f"## 目录\n\n"
     md += f"（点击右上角目录图标）\n\n"
     md += f"## 内容\n"

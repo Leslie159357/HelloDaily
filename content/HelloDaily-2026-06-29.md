@@ -1,10 +1,6 @@
 # 《HelloDaily》第 001 期
 > 兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/521xueweihan/img_logo/master/logo/readme.gif"/>
-</p>
-
 ## 目录
 
 （点击右上角目录图标）

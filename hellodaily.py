@@ -1,251 +1,110 @@
 #!/usr/bin/env python3
-"""HelloDaily — 每日 GitHub 开源精选"""
+"""HelloDaily — 每日 GitHub 开源精选（数据源：HelloGitHub）"""
 
 import urllib.request
-import json
+import json as json_mod
 import os
 import re
 import glob
+import sys
 from datetime import date
-from html.parser import HTMLParser
 
-TRENDING_URL = "https://github.com/trending"
+TRENDING_URL = "https://hellogithub.com/periodical/volume"
 OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-class TrendingParser(HTMLParser):
-    def __init__(self):
-        super().__init__()
-        self.repos = []
-        self.in_article = False
-        self.current = {}
-        self.in_h2 = False
-        self.in_desc = False
-        self.in_p = False
-        self.in_lang = False
-        self.in_stars = False
-        self.in_fork = False
-        self._tag_stack = []
 
-    def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        self._tag_stack.append(tag)
-
-        # Article = repo card
-        if tag == "article":
-            self.in_article = True
-            self.current = {"name": "", "desc": "", "lang": "", "stars": "", "forks": "", "stars_today": ""}
-
-        if not self.in_article:
-            return
-
-        # Repo name: h2 > a
-        if tag == "h2":
-            self.in_h2 = True
-        if tag == "p" and self.in_article and not self.in_h2:
-            self.in_desc = True
-            self._desc_chars = ""
-
-    def handle_data(self, data):
-        if not self.in_article:
-            return
-        if self.in_h2:
-            self.current["name"] = data.strip()
-        if self.in_desc:
-            self._desc_chars = self._desc_chars + data.strip() + " "
-
-        # Language spans and star counts - skip complex parsing, read the HTML directly
-        # Alternative: use regex-based approach on raw HTML
-
-    def handle_endtag(self, tag):
-        if tag == "article" and self.in_article:
-            self.in_article = False
-            name = self.current.get("name", "").strip()
-            if name and "/" in name:
-                # Clean up
-                name = re.sub(r'\s+', ' ', name).strip()
-                desc = self._desc_chars.strip() if hasattr(self, '_desc_chars') else ""
-                desc = re.sub(r'\s+', ' ', desc).strip()
-                self.current["name"] = name
-                self.current["desc"] = desc
-                self.repos.append(dict(self.current))
-            self.current = {}
-
-        if tag == self._tag_stack[-1]:
-            self._tag_stack.pop()
-        if tag == "h2":
-            self.in_h2 = False
-        if tag == "p" and self.in_desc:
-            self.in_desc = False
-
-
-def fetch_trending(language=""):
-    """Fetch trending repos using a simpler regex approach"""
-    url = f"{TRENDING_URL}/{language}" if language else TRENDING_URL
+def fetch_hellogithub(volume=122):
+    """从 HelloGitHub 某期月刊抓取项目数据"""
+    url = f"{TRENDING_URL}/{volume}"
     req = urllib.request.Request(url, headers={
         "User-Agent": "Mozilla/5.0 (compatible; HelloDaily/1.0)",
         "Accept": "text/html",
     })
-    html = urllib.request.urlopen(req, timeout=15).read().decode("utf-8")
+    try:
+        html = urllib.request.urlopen(req, timeout=15).read().decode("utf-8")
+    except Exception as e:
+        print(f"  ⚠️ 第 {volume} 期请求失败: {e}")
+        return []
+
+    # 从 __NEXT_DATA__ 提取 JSON
+    m = re.search(r'__NEXT_DATA__"\s*type="application/json">(.+?)</script>', html, re.DOTALL)
+    if not m:
+        print("⚠️ 无法解析 HelloGitHub 页面数据")
+        return []
+
+    data = json_mod.loads(m.group(1))
+    try:
+        volume_data = data["props"]["pageProps"]["volume"]
+        categories = volume_data["data"]
+    except (KeyError, TypeError) as e:
+        print(f"⚠️ 页面数据结构不符预期: {e}")
+        return []
 
     repos = []
-    # Find all repo cards
-    articles = re.split(r'<article', html)[1:]
-
-    for art in articles:
-        # Repo name
-        name_match = re.search(r'h2[^>]*>.*?<a[^>]*href="/([^"]+)"', art, re.DOTALL)
-        if not name_match:
-            continue
-        full_name = name_match.group(1).strip()
-        owner, repo_name = full_name.split("/", 1) if "/" in full_name else (full_name, "")
-
-        # Description
-        desc_match = re.search(r'<p[^>]*class="[^"]*col-9[^"]*color-fg-muted[^"]*"[^>]*>(.*?)</p>', art, re.DOTALL)
-        desc = ""
-        if desc_match:
-            desc = re.sub(r'<[^>]+>', '', desc_match.group(1)).strip()
-            desc = desc.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&#39;", "'").replace("&quot;", '"')
-
-        # Language
-        lang_match = re.search(r'<span[^>]*itemprop="programmingLanguage"[^>]*>(.*?)</span>', art, re.DOTALL)
-        lang = lang_match.group(1).strip() if lang_match else ""
-
-        # Stars (total) - try multiple patterns
-        stars = ""
-        for s_pattern in [
-            r'<a[^>]*href="/' + re.escape(full_name) + r'/stargazers"[^>]*>.*?<strong>(.*?)</strong>',
-            r'<a[^>]*href="/' + re.escape(full_name) + r'/stargazers"[^>]*>.*?([\d,]+)\s*</a>',
-            r'star-count[^>]*>[\s\n]*([\d,]+)',
-            r'aria-label="[^"]*([\d,]+)\s*star',
-        ]:
-            s_match = re.search(s_pattern, art, re.DOTALL)
-            if s_match:
-                stars = s_match.group(1).strip().replace(",", "")
-                if stars.isdigit():
-                    # format with commas
-                    stars = f"{int(stars):,}"
-                    break
-
-        # Stars today
-        today_match = re.search(r'<span[^>]*class="[^"]*d-inline-block[^"]*float-sm-right[^"]*"[^>]*>.*?([\d,]+)\s*stars\s*today', art, re.DOTALL)
-        stars_today = ""
-        if today_match:
-            stars_today = today_match.group(1).strip()
-        if not stars_today:
-            # Alternative pattern
-            today_match2 = re.search(r'([\d,]+)\s*stars\s*(today|this month)', art, re.DOTALL)
-            if today_match2:
-                stars_today = today_match2.group(1).strip()
-
-        repos.append({
-            "name": full_name,
-            "desc": desc,
-            "lang": lang,
-            "stars": stars,
-            "stars_today": stars_today,
-        })
-
-    return repos
-
-
-def translate_descriptions(repos):
-    """Translate English descriptions to Chinese using LLM API (SiliconFlow/deepseek)"""
-    import urllib.parse, json as json_mod
-
-    api_key = os.environ.get("OPENAI_API_KEY", "")
-    base_url = os.environ.get("OPENAI_BASE_URL", "https://api.siliconflow.cn/v1")
-    if not api_key:
-        return repos  # no key, skip translation
-
-    # Build prompt with all descriptions
-    lines = []
-    for i, r in enumerate(repos):
-        if r["desc"]:
-            # Strip leading emojis from raw desc
-            clean_desc = re.sub(r'^[^\w\d]*', '', r["desc"]).strip()
-            lines.append(f"{i+1}. {clean_desc}")
-
-    if not lines:
-        return repos
-
-    prompt = """为以下每个GitHub项目写一段30-60字的中文简介，要求：
-- 说明项目是做什么的
-- 用通俗语言解释核心功能/使用场景
-- 读起来自然流畅，像编辑写的推荐语
-
-按以下格式输出：
-1. 简介1
-2. 简介2
-...
-
-项目列表：
-""" + "\n".join(lines)
-
-    data = json_mod.dumps({
-        "model": "deepseek-ai/DeepSeek-V3",
-        "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.1,
-        "max_tokens": 4096,
-    }).encode("utf-8")
-
-    req = urllib.request.Request(
-        f"{base_url}/chat/completions",
-        data=data,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {api_key}",
-        }
-    )
-    try:
-        resp = urllib.request.urlopen(req, timeout=30).read().decode("utf-8")
-        result = json_mod.loads(resp)
-        text = result["choices"][0]["message"]["content"]
-
-        # Parse translations back into repos
-        for line in text.strip().split("\n"):
-            line = line.strip()
-            if not line or "." not in line:
-                continue
-            idx_part = line.split(".")[0].strip()
-            if not idx_part.isdigit():
-                continue
-            idx = int(idx_part) - 1
-            if 0 <= idx < len(repos):
-                trans = ".".join(line.split(".")[1:]).strip()
-                # Remove leading number if any
-                if trans and repos[idx]["desc"]:
-                    repos[idx]["desc"] = trans[:200]  # keep it concise
-    except Exception as e:
-        print(f"⚠️ 翻译失败: {e}，使用原始英文描述")
-
+    for cat in categories:
+        cat_name = cat.get("category_name", "其他")
+        for item in cat.get("items", []):
+            desc = item.get("description", "").strip()
+            if not desc:
+                desc = item.get("description_en", "").strip()
+            repos.append({
+                "name": item.get("full_name", ""),
+                "desc": desc,
+                "lang": cat_name,
+                "stars": f"{item.get('stars', 0):,}",
+                "stars_today": "",
+            })
     return repos
 
 
 def lang_emoji(lang):
+    # 去掉 " 项目" 后缀再匹配
+    name = lang.replace(" 项目", "").replace("项目", "")
     emoji_map = {
         "Python": "🐍", "JavaScript": "🟨", "TypeScript": "🔷", "Java": "☕",
         "Go": "🔵", "Rust": "🦀", "C++": "⚡", "C": "💠", "Ruby": "💎",
         "Swift": "🍎", "Kotlin": "🟣", "PHP": "🐘", "Shell": "🐚",
         "HTML": "🌐", "CSS": "🎨", "Vue": "💚", "React": "⚛️",
+        "人工智能": "🤖", "Skills": "🛠", "其他": "📦", "其它": "📦",
+        "C#": "🎯", "Go": "🔵",
     }
-    return emoji_map.get(lang, "📦")
+    return emoji_map.get(name, "📦")
 
 
-def generate_markdown(repos):
+def get_used_volumes(content_dir):
+    """从已有的 content 和 gen 文件中推断已用过的 HelloGitHub 期数"""
+    used = set()
+    # 从 gen_issue*.py 中提取 "HelloGitHub 第 X 期" 或 "volume/X"
+    for f in glob.glob(os.path.join(OUTPUT_DIR, "gen_issue*.py")):
+        with open(f, "r", errors="ignore") as fh:
+            text = fh.read()
+            for m in re.finditer(r'HelloGitHub\s*第\s*(\d+)\s*期', text):
+                used.add(int(m.group(1)))
+            for m in re.finditer(r'volume/(\d+)', text):
+                used.add(int(m.group(1)))
+    # 从已有 content 文件中提取 "HelloGitHub 第 X 期"
+    for f in glob.glob(os.path.join(content_dir, "HelloDaily-*.md")):
+        with open(f, "r", errors="ignore") as fh:
+            text = fh.read()
+            for m in re.finditer(r'HelloGitHub\s*第\s*(\d+)\s*期', text):
+                used.add(int(m.group(1)))
+    return used
+
+
+def generate_markdown(repos, volume):
     today_dt = date.today()
     today = today_dt.isoformat()
     content_dir = os.path.join(OUTPUT_DIR, "content")
 
-    # 计算期号: 基于首期日期推算
-    import glob
+    # 计算期号
+    from datetime import datetime as dt
     existing = sorted(glob.glob(os.path.join(content_dir, "HelloDaily-*.md")))
     first_date = None
     for f in existing:
-        import re as re_mod
-        m = re_mod.search(r'HelloDaily-(\d{4}-\d{2}-\d{2})', f)
-        if m:
+        m2 = re.search(r'HelloDaily-(\d{4}-\d{2}-\d{2})', f)
+        if m2:
             try:
-                fd = date.fromisoformat(m.group(1))
+                fd = date.fromisoformat(m2.group(1))
                 if first_date is None or fd < first_date:
                     first_date = fd
             except:
@@ -263,11 +122,11 @@ def generate_markdown(repos):
         lang = r["lang"] or "其他"
         by_lang.setdefault(lang, []).append(r)
 
-    # Sort languages by repo count
     sorted_langs = sorted(by_lang.keys(), key=lambda l: len(by_lang[l]), reverse=True)
 
     md = f"# 《HelloDaily》{issue_str}\n"
-    md += f"> 兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！\n\n"
+    md += f"> 兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！\n"
+    md += f"> 本期内容精选自 HelloGitHub 第 {volume} 期\n\n"
     md += f"## 目录\n\n"
     md += f"（点击右上角目录图标）\n\n"
     md += f"## 内容\n"
@@ -279,8 +138,7 @@ def generate_markdown(repos):
         md += f"### {emoji} {lang}\n\n"
         for idx, r in enumerate(items, 1):
             stars_str = f"🌟 {r['stars']}" if r['stars'] else ""
-            today_str = f" +{r['stars_today']}/日" if r['stars_today'] else ""
-            badge = f"{stars_str}{today_str}" if (stars_str or today_str) else ""
+            badge = f"{stars_str}" if stars_str else ""
             md += f"{idx}、[{r['name']}](https://github.com/{r['name']})"
             if badge:
                 md += f" {badge}"
@@ -290,7 +148,7 @@ def generate_markdown(repos):
                 md += f"   {desc}\n"
             md += "\n"
 
-    # 上一期/下一期 导航
+    # 导航
     filepath = os.path.join(content_dir, f"HelloDaily-{today}.md")
     all_files = sorted(glob.glob(os.path.join(content_dir, "HelloDaily-*.md")))
     prev_link = ""
@@ -299,11 +157,9 @@ def generate_markdown(repos):
         if f == filepath:
             if i > 0:
                 prev_name = os.path.basename(all_files[i-1])
-                prev_num = i  # 第 {i} 期
                 prev_link = f'<a href="{prev_name}">『上一期』</a>'
             if i < len(all_files) - 1:
                 next_name = os.path.basename(all_files[i+1])
-                next_num = i + 2  # 第 {i+2} 期
                 next_link = f'<a href="{next_name}">『下一期』</a>'
             break
 
@@ -316,54 +172,73 @@ def generate_markdown(repos):
         nav_parts.append(next_link)
     md += f'<p align="center">\n    {" | ".join(nav_parts)}\n</p>\n\n'
     md += "---\n"
-    md += f'<p align="center">\n'
-    md += f'    👉 每天 09:00 自动更新 · GitHub Trending 精选 👈<br>\n'
-    md += f'</p>\n'
+    md += '<p align="center">\n'
+    md += '    👉 每天 09:00 自动更新 · HelloGitHub 精选 👈<br>\n'
+    md += '</p>\n'
     return md, issue_num, today
 
 
 if __name__ == "__main__":
-    print("🌐 正在获取 GitHub Trending...")
-    repos = fetch_trending()
+    content_dir = os.path.join(OUTPUT_DIR, "content")
+    os.makedirs(content_dir, exist_ok=True)
+
+    # 选一个没用过的期数
+    used = get_used_volumes(content_dir)
+    print(f"📚 HelloGitHub 已用期数: {sorted(used) or '无'}")
+
+    # 从 122 开始往后找
+    volume = 122
+    while volume in used:
+        volume += 1
+
+    print(f"📖 正在获取 HelloGitHub 第 {volume} 期...")
+    repos = fetch_hellogithub(volume)
+    # 往前找不到就往后退
+    while not repos and volume < 150:
+        volume += 1
+        if volume in used:
+            continue
+        print(f"⚠️ 第 {volume-1} 期不可用，尝试第 {volume} 期...")
+        repos = fetch_hellogithub(volume)
+    # 还找不到就往前找
+    if not repos:
+        volume = 122
+        while volume in used:
+            volume -= 1
+        if volume >= 1:
+            print(f"⚠️ 往前找到第 {volume} 期...")
+            repos = fetch_hellogithub(volume)
+    if not repos:
+        print("❌ 全部获取失败")
+        sys.exit(1)
+
     print(f"✅ 获取到 {len(repos)} 个项目")
 
-    print("🌏 正在翻译中文简介...")
-    repos = translate_descriptions(repos)
-    print(f"✅ 翻译完成")
-
-    md, issue_num, today = generate_markdown(repos)
+    md, issue_num, today = generate_markdown(repos, volume)
     issue_str = f"第 {issue_num:03d} 期"
 
     # Save to content dir
-    content_dir = os.path.join(OUTPUT_DIR, "content")
-    os.makedirs(content_dir, exist_ok=True)
-    filename = f"HelloDaily-{date.today().isoformat()}.md"
+    filename = f"HelloDaily-{today}.md"
     filepath = os.path.join(content_dir, filename)
-
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(md)
     print(f"✅ 已保存: {filepath}")
 
     # Update README
     readme_path = os.path.join(OUTPUT_DIR, "README.md")
-    latest_link = f"[**{issue_str} · {today}**](content/{filename})"
+    latest_link = f"[**{issue_str} · {today}（HelloGitHub 第{volume}期）**](content/{filename})"
 
-    # 构建往期表格行
-    entries_per_row = 5
-    table_rows = []
-    # 获取所有已有期号
     all_issues = sorted(glob.glob(os.path.join(content_dir, "HelloDaily-*.md")), reverse=True)
+    entries_per_row = 5
     issue_links = []
     for i, fpath in enumerate(all_issues):
         fname = os.path.basename(fpath)
-        # 期号按文件数倒序
-        issue_num = len(all_issues) - i
-        issue_links.append(f"[第 {issue_num:03d} 期](content/{fname})")
+        num = len(all_issues) - i
+        issue_links.append(f"[第 {num:03d} 期](content/{fname})")
 
-    # 按 5 列分组
+    table_rows = []
     for i in range(0, len(issue_links), entries_per_row):
         row = issue_links[i:i+entries_per_row]
-        # 补齐空单元格
         while len(row) < entries_per_row:
             row.append("")
         table_rows.append(f"| {' | '.join(row)} |")
@@ -379,8 +254,8 @@ if __name__ == "__main__":
 
 <p align="center">
   <img src="https://img.shields.io/badge/HelloDaily-每日开源精选-ff69b4?style=for-the-badge&logo=github"/><br>
-  🌟 每天 09:00 自动推送 GitHub Trending 精选项目<br>
-  链接 + 中文解读 · 按语言分类
+  🌟 每天 09:00 自动推送 HelloGitHub 精选项目<br>
+  中文解读 · 按语言分类
 </p>
 
 <p align="center">
@@ -394,7 +269,7 @@ if __name__ == "__main__":
 
 ## 最新一期
 
-📅 **[{issue_str} · {today}](content/{filename})**
+📅 **[{issue_str} · {today}（HelloGitHub 第{volume}期）](content/{filename})**
 
 ## 往期
 
@@ -404,7 +279,7 @@ if __name__ == "__main__":
 
 ## 关于
 
-每天 09:00 自动抓取 **GitHub Trending**，按语言分类，链接 + 🌟 总星数 + 中文解读，推送至仓库。
+每天 09:00 自动抓取 **HelloGitHub** 精选内容，按语言分类，链接 + 🌟 总星数 + 中文解读，推送至仓库。
 
 ---
 

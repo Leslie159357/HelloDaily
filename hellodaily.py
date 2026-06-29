@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""HelloDaily — 每日 GitHub 开源精选（数据源：HelloGitHub）"""
+"""HelloDaily — 每日开源精选"""
 
 import urllib.request
 import json as json_mod
@@ -8,57 +8,173 @@ import re
 import glob
 import sys
 from datetime import date
+from urllib.parse import unquote
 
-TRENDING_URL = "https://hellogithub.com/periodical/volume"
 OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
-def fetch_hellogithub(volume=122):
-    """从 HelloGitHub 某期月刊抓取项目数据"""
-    url = f"{TRENDING_URL}/{volume}"
+def fetch_by_volume(volume):
+    """从 521xueweihan/HelloGitHub repo 抓取某期 markdown"""
+    url = f"https://raw.githubusercontent.com/521xueweihan/HelloGitHub/master/content/HelloGitHub{volume}.md"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "HelloDaily/1.0"})
+        text = urllib.request.urlopen(req, timeout=15).read().decode("utf-8")
+    except Exception as e:
+        print(f"  ⚠️ 第 {volume} 期获取失败: {e}")
+        return []
+
+    repos = []
+    current_lang = "其他"
+
+    for line in text.split("\n"):
+        # 语言分类标题
+        m = re.match(r'^###\s+(.+?)(?:\s+项目)?$', line.strip())
+        if m:
+            current_lang = m.group(1).strip()
+            continue
+
+        # 项目条目: 1、[name](link)：description
+        m = re.match(r'^\d+、\[(.+?)\]\((.+?)\)[：:]\s*(.*)', line.strip())
+        if m:
+            name = m.group(1).strip()
+            link = m.group(2).strip()
+            desc = m.group(3).strip()
+
+            # 提取真实 GitHub 链接
+            if 'target=' in link:
+                link = unquote(link.split('target=')[1].split('&')[0])
+
+            # 去掉 "来自 @xxx" 后缀
+            desc = re.sub(r'\s*来自\s*\[@[^\]]+\]\([^)]+\)\s*', '', desc).strip()
+            desc = re.sub(r'\s*来自\s*@\S+\s*', '', desc).strip()
+
+            # 提取 repo full_name
+            full_name = ""
+            gh_m = re.search(r'github\.com/([^/]+/[^/?#]+)', link)
+            if gh_m:
+                full_name = gh_m.group(1).rstrip('/')
+
+            repos.append({
+                "name": full_name or name,
+                "desc": desc,
+                "lang": current_lang,
+                "stars": "",
+                "stars_today": "",
+            })
+
+    return repos
+
+
+def fetch_trending():
+    """从 GitHub Trending 补充热门项目"""
+    url = "https://github.com/trending"
     req = urllib.request.Request(url, headers={
         "User-Agent": "Mozilla/5.0 (compatible; HelloDaily/1.0)",
         "Accept": "text/html",
     })
     try:
         html = urllib.request.urlopen(req, timeout=15).read().decode("utf-8")
-    except Exception as e:
-        print(f"  ⚠️ 第 {volume} 期请求失败: {e}")
-        return []
-
-    # 从 __NEXT_DATA__ 提取 JSON
-    m = re.search(r'__NEXT_DATA__"\s*type="application/json">(.+?)</script>', html, re.DOTALL)
-    if not m:
-        print("⚠️ 无法解析 HelloGitHub 页面数据")
-        return []
-
-    data = json_mod.loads(m.group(1))
-    try:
-        volume_data = data["props"]["pageProps"]["volume"]
-        categories = volume_data["data"]
-    except (KeyError, TypeError) as e:
-        print(f"⚠️ 页面数据结构不符预期: {e}")
+    except:
         return []
 
     repos = []
-    for cat in categories:
-        cat_name = cat.get("category_name", "其他")
-        for item in cat.get("items", []):
-            desc = item.get("description", "").strip()
-            if not desc:
-                desc = item.get("description_en", "").strip()
-            repos.append({
-                "name": item.get("full_name", ""),
-                "desc": desc,
-                "lang": cat_name,
-                "stars": f"{item.get('stars', 0):,}",
-                "stars_today": "",
-            })
+    articles = re.split(r'<article', html)[1:]
+
+    for art in articles:
+        # Repo name
+        name_match = re.search(r'h2[^>]*>.*?<a[^>]*href="/([^\"]+)"', art, re.DOTALL)
+        if not name_match:
+            continue
+        full_name = name_match.group(1).strip()
+
+        # Description
+        desc_match = re.search(r'<p[^>]*class="[^"]*col-9[^"]*color-fg-muted[^"]*"[^>]*>(.*?)</p>', art, re.DOTALL)
+        desc = ""
+        if desc_match:
+            desc = re.sub(r'<[^>]+>', '', desc_match.group(1)).strip()
+            desc = desc.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&#39;", "'").replace("&quot;", '"')
+
+        # Language
+        lang_match = re.search(r'<span[^>]*itemprop="programmingLanguage"[^>]*>(.*?)</span>', art, re.DOTALL)
+        lang = lang_match.group(1).strip() if lang_match else "其他"
+
+        # Stars
+        stars = ""
+        for pattern in [
+            r'<a[^>]*href="/' + re.escape(full_name) + r'/stargazers"[^>]*>.*?<strong>(.*?)</strong>',
+            r'aria-label="[^"]*(\d[\d,]*)\s*star',
+        ]:
+            s_match = re.search(pattern, art, re.DOTALL)
+            if s_match:
+                s = s_match.group(1).strip().replace(",", "")
+                if s.isdigit():
+                    stars = f"{int(s):,}"
+                    break
+
+        repos.append({
+            "name": full_name,
+            "desc": desc,
+            "lang": lang,
+            "stars": stars,
+            "stars_today": "",
+        })
+
+    return repos
+
+
+def translate_descriptions(repos):
+    """翻译英文简介为中文（只对 Trending 来的项目）"""
+    import json as json_mod
+    api_key = os.environ.get("OPENAI_API_KEY", "")
+    base_url = os.environ.get("OPENAI_BASE_URL", "https://api.siliconflow.cn/v1")
+    if not api_key:
+        return repos
+
+    # 只翻译还没中文的（已有中文的不动）
+    to_translate = [(i, r) for i, r in enumerate(repos) if r["desc"] and not any('\u4e00' <= c <= '\u9fff' for c in r["desc"])]
+    if not to_translate:
+        return repos
+
+    # 按批次翻译，每批 10 个
+    batch_size = 10
+    for batch_start in range(0, len(to_translate), batch_size):
+        batch = to_translate[batch_start:batch_start + batch_size]
+        lines = [f"{j+1}. {r['desc']}" for j, (_, r) in enumerate(batch)]
+        prompt = "将以下英文项目简介翻译成中文（30-60字），直接给出译文，不要编号和项目名：\n\n" + "\n".join(lines)
+
+        data = json_mod.dumps({
+            "model": "deepseek-ai/DeepSeek-V3",
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.1,
+            "max_tokens": 2048,
+        }).encode("utf-8")
+
+        req = urllib.request.Request(
+            f"{base_url}/chat/completions",
+            data=data,
+            headers={"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
+        )
+        try:
+            resp = urllib.request.urlopen(req, timeout=30).read().decode("utf-8")
+            result = json_mod.loads(resp)
+            text = result["choices"][0]["message"]["content"]
+            for j, line in enumerate(text.strip().split("\n")):
+                line = line.strip()
+                if not line:
+                    continue
+                # 去掉可能的编号
+                line = re.sub(r'^\d+[.、\s]*', '', line)
+                if j < len(batch) and line:
+                    idx = batch[j][0]
+                    repos[idx]["desc"] = line[:200]
+        except Exception as e:
+            print(f"  ⚠️ 翻译失败: {e}")
+            break
+
     return repos
 
 
 def lang_emoji(lang):
-    # 去掉 " 项目" 后缀再匹配
     name = lang.replace(" 项目", "").replace("项目", "")
     emoji_map = {
         "Python": "🐍", "JavaScript": "🟨", "TypeScript": "🔷", "Java": "☕",
@@ -66,27 +182,23 @@ def lang_emoji(lang):
         "Swift": "🍎", "Kotlin": "🟣", "PHP": "🐘", "Shell": "🐚",
         "HTML": "🌐", "CSS": "🎨", "Vue": "💚", "React": "⚛️",
         "人工智能": "🤖", "Skills": "🛠", "其他": "📦", "其它": "📦",
-        "C#": "🎯", "Go": "🔵",
+        "C#": "🎯",
     }
     return emoji_map.get(name, "📦")
 
 
 def get_used_volumes(content_dir):
-    """从已有的 content 和 gen 文件中推断已用过的 HelloGitHub 期数"""
+    """从已有 content 文件推断已用过的 HelloGitHub 期数"""
     used = set()
-    # 从 gen_issue*.py 中提取 "HelloGitHub 第 X 期" 或 "volume/X"
     for f in glob.glob(os.path.join(OUTPUT_DIR, "gen_issue*.py")):
         with open(f, "r", errors="ignore") as fh:
             text = fh.read()
-            for m in re.finditer(r'HelloGitHub\s*第\s*(\d+)\s*期', text):
-                used.add(int(m.group(1)))
             for m in re.finditer(r'volume/(\d+)', text):
                 used.add(int(m.group(1)))
-    # 从已有 content 文件中提取 "HelloGitHub 第 X 期"
     for f in glob.glob(os.path.join(content_dir, "HelloDaily-*.md")):
         with open(f, "r", errors="ignore") as fh:
             text = fh.read()
-            for m in re.finditer(r'HelloGitHub\s*第\s*(\d+)\s*期', text):
+            for m in re.finditer(r'来自.*?第\s*(\d+)\s*期', text):
                 used.add(int(m.group(1)))
     return used
 
@@ -97,7 +209,6 @@ def generate_markdown(repos, volume):
     content_dir = os.path.join(OUTPUT_DIR, "content")
 
     # 计算期号
-    from datetime import datetime as dt
     existing = sorted(glob.glob(os.path.join(content_dir, "HelloDaily-*.md")))
     first_date = None
     for f in existing:
@@ -126,7 +237,7 @@ def generate_markdown(repos, volume):
 
     md = f"# 《HelloDaily》{issue_str}\n"
     md += f"> 兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！\n"
-    md += f"> 本期内容精选自 HelloGitHub 第 {volume} 期\n\n"
+    md += f"> 本期内容精选自第 {volume} 期\n\n"
     md += f"## 目录\n\n"
     md += f"（点击右上角目录图标）\n\n"
     md += f"## 内容\n"
@@ -173,7 +284,7 @@ def generate_markdown(repos, volume):
     md += f'<p align="center">\n    {" | ".join(nav_parts)}\n</p>\n\n'
     md += "---\n"
     md += '<p align="center">\n'
-    md += '    👉 每天 09:00 自动更新 · HelloGitHub 精选 👈<br>\n'
+    md += '    👉 每天 09:00 自动更新 · 开源精选 👈<br>\n'
     md += '</p>\n'
     return md, issue_num, today
 
@@ -182,52 +293,58 @@ if __name__ == "__main__":
     content_dir = os.path.join(OUTPUT_DIR, "content")
     os.makedirs(content_dir, exist_ok=True)
 
-    # 选一个没用过的期数
+    # 1. 从 HelloGitHub repo 抓一期
     used = get_used_volumes(content_dir)
-    print(f"📚 HelloGitHub 已用期数: {sorted(used) or '无'}")
+    print(f"📚 已用期数: {sorted(used) or '无'}")
 
-    # 从 122 开始往后找
-    volume = 122
+    volume = 123  # 从最新一期开始
     while volume in used:
-        volume += 1
-
-    print(f"📖 正在获取 HelloGitHub 第 {volume} 期...")
-    repos = fetch_hellogithub(volume)
-    # 往前找不到就往后退
-    while not repos and volume < 150:
-        volume += 1
-        if volume in used:
-            continue
-        print(f"⚠️ 第 {volume-1} 期不可用，尝试第 {volume} 期...")
-        repos = fetch_hellogithub(volume)
-    # 还找不到就往前找
-    if not repos:
-        volume = 122
+        volume -= 1
+    if volume < 1:
+        volume = 123
         while volume in used:
             volume -= 1
-        if volume >= 1:
-            print(f"⚠️ 往前找到第 {volume} 期...")
-            repos = fetch_hellogithub(volume)
+
+    print(f"📖 正在获取第 {volume} 期...")
+    repos = fetch_by_volume(volume)
     if not repos:
-        print("❌ 全部获取失败")
+        print(f"⚠️ 第 {volume} 期获取失败")
         sys.exit(1)
+    print(f"✅ 从 HelloGitHub 获取到 {len(repos)} 个项目")
 
-    print(f"✅ 获取到 {len(repos)} 个项目")
+    # 2. 从 GitHub Trending 补充
+    print("📈 正在获取 GitHub Trending...")
+    trending = fetch_trending()
+    print(f"✅ 获取到 {len(trending)} 个 Trending 项目")
 
+    # 翻译 Trending 项目的英文简介
+    if trending:
+        print("🌏 正在翻译 Trending 简介...")
+        trending = translate_descriptions(trending)
+        print("✅ 翻译完成")
+
+    # 合并：去掉重复的（Trending 里已经在 HelloGitHub 有的跳过）
+    existing_names = {r["name"] for r in repos if r["name"]}
+    new_count = 0
+    for r in trending:
+        if r["name"] and r["name"] not in existing_names:
+            repos.append(r)
+            existing_names.add(r["name"])
+            new_count += 1
+    print(f"✅ Trending 补充了 {new_count} 个新项目")
+
+    # 生成
     md, issue_num, today = generate_markdown(repos, volume)
     issue_str = f"第 {issue_num:03d} 期"
 
-    # Save to content dir
     filename = f"HelloDaily-{today}.md"
     filepath = os.path.join(content_dir, filename)
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(md)
     print(f"✅ 已保存: {filepath}")
 
-    # Update README
+    # 更新 README（不提 HelloGitHub）
     readme_path = os.path.join(OUTPUT_DIR, "README.md")
-    latest_link = f"[**{issue_str} · {today}**](content/{filename})"
-
     all_issues = sorted(glob.glob(os.path.join(content_dir, "HelloDaily-*.md")), reverse=True)
     entries_per_row = 5
     issue_links = []
@@ -254,7 +371,7 @@ if __name__ == "__main__":
 
 <p align="center">
   <img src="https://img.shields.io/badge/HelloDaily-每日开源精选-ff69b4?style=for-the-badge&logo=github"/><br>
-  🌟 每天 09:00 自动推送 HelloGitHub 精选项目<br>
+  🌟 每天 09:00 自动推送精选项目<br>
   中文解读 · 按语言分类
 </p>
 
@@ -279,7 +396,7 @@ if __name__ == "__main__":
 
 ## 关于
 
-每天 09:00 自动抓取 **HelloGitHub** 精选内容，按语言分类，链接 + 🌟 总星数 + 中文解读，推送至仓库。
+每天 09:00 自动抓取 **GitHub Trending + 热门项目**，按语言分类，链接 + 🌟 总星数 + 中文解读，推送至仓库。
 
 ---
 
@@ -293,3 +410,4 @@ if __name__ == "__main__":
         by_lang[l] = by_lang.get(l, 0) + 1
     for l, c in sorted(by_lang.items(), key=lambda x: -x[1]):
         print(f"   {lang_emoji(l)} {l}: {c} 个项目")
+    print(f"\n📦 来源: 精选第 {volume} 期 + GitHub Trending (+{new_count})")

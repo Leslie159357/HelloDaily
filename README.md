@@ -6,7 +6,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/HelloDaily-每日开源精选-ff69b4?style=for-the-badge&logo=github"/><br>
-  🌟 每天 09:00 自动推送 HelloGitHub 精选项目<br>
+  🌟 每天 09:00 自动推送精选项目<br>
   中文解读 · 按语言分类
 </p>
 
@@ -31,7 +31,7 @@
 
 ## 关于
 
-每天 09:00 自动抓取 **HelloGitHub** 精选内容，按语言分类，链接 + 🌟 总星数 + 中文解读，推送至仓库。
+每天 09:00 自动抓取 **GitHub Trending + 热门项目**，按语言分类，链接 + 🌟 总星数 + 中文解读，推送至仓库。
 
 ---
 

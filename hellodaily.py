@@ -168,7 +168,18 @@ def translate_descriptions(repos):
     if not lines:
         return repos
 
-    prompt = "将以下GitHub项目简介翻译成中文，要求信息完整、保留技术术语，不添加编号和项目名，直接给出译文：\n\n" + "\n".join(lines)
+    prompt = """为以下每个GitHub项目写一段30-60字的中文简介，要求：
+- 说明项目是做什么的
+- 用通俗语言解释核心功能/使用场景
+- 读起来自然流畅，像编辑写的推荐语
+
+按以下格式输出：
+1. 简介1
+2. 简介2
+...
+
+项目列表：
+""" + "\n".join(lines)
 
     data = json_mod.dumps({
         "model": "deepseek-ai/DeepSeek-V3",
@@ -203,7 +214,7 @@ def translate_descriptions(repos):
                 trans = ".".join(line.split(".")[1:]).strip()
                 # Remove leading number if any
                 if trans and repos[idx]["desc"]:
-                    repos[idx]["desc"] = trans[:80]  # keep it concise
+                    repos[idx]["desc"] = trans[:200]  # keep it concise
     except Exception as e:
         print(f"⚠️ 翻译失败: {e}，使用原始英文描述")
 

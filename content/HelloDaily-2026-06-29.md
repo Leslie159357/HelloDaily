@@ -3,54 +3,55 @@
 
 ### 🐍 Python
 
-1. **[`commaai/openpilot`](https://github.com/commaai/openpilot)**  🔥+266
-   openpilot is an operating system for robotics. Currently, it upgrades the driver assistance system on 300+ supported cars.
+1. **[`commaai/openpilot`](https://github.com/commaai/openpilot)** 🔥+266
+   开源的机器人操作系统，目前支持 300+ 车型的辅助驾驶系统升级。
 
-1. **[`xbtlin/ai-berkshire`](https://github.com/xbtlin/ai-berkshire)**  🔥+1,445
-   AI 时代的伯克希尔：基于 Claude Code / Codex 的价值投资研究框架。巴菲特·芒格·段永平·李录四大师方法论 + 多Agent并行研究。| AI-era Berkshire: a value investing research framework built for Claude Code / Codex. 4 masters' methodologies + multi-ag…
+2. **[`xbtlin/ai-berkshire`](https://github.com/xbtlin/ai-berkshire)** 🔥+1,445
+   AI 时代的价值投资研究框架，融合巴菲特、芒格、段永平、李录四位大师的方法论，支持多 Agent 并行分析。
 
-1. **[`Robbyant/lingbot-map`](https://github.com/Robbyant/lingbot-map)**  🔥+372
-   A feed-forward 3D foundation model for reconstructing scenes from streaming data
+3. **[`Robbyant/lingbot-map`](https://github.com/Robbyant/lingbot-map)** 🔥+372
+   前馈式 3D 基础模型，能从实时数据流中重建场景。
 
-1. **[`cupy/cupy`](https://github.com/cupy/cupy)**  🔥+174
-   NumPy & SciPy for GPU
+4. **[`cupy/cupy`](https://github.com/cupy/cupy)** 🔥+174
+   NumPy/SciPy 的 GPU 加速替代品，代码不用改就能跑在 GPU 上，科学计算提速利器。
 
-1. **[`opendatalab/MinerU`](https://github.com/opendatalab/MinerU)**  🔥+380
-   Transforms complex documents like PDFs and Office docs into LLM-ready markdown/JSON for your Agentic workflows.
+5. **[`opendatalab/MinerU`](https://github.com/opendatalab/MinerU)** 🔥+380
+   把 PDF、Office 文档转成 LLM 可用的 Markdown/JSON 格式，方便接入 Agentic 工作流。
 
-1. **[`HKUDS/Vibe-Trading`](https://github.com/HKUDS/Vibe-Trading)**  🔥+492
-   "Vibe-Trading: Your Personal Trading Agent"
+6. **[`HKUDS/Vibe-Trading`](https://github.com/HKUDS/Vibe-Trading)** 🔥+492
+   你的个人交易助手，用 AI 辅助投资决策。
 
-1. **[`usestrix/strix`](https://github.com/usestrix/strix)**  🔥+122
-   Open-source AI hackers to find and fix your app’s vulnerabilities.
+7. **[`usestrix/strix`](https://github.com/usestrix/strix)** 🔥+122
+   开源 AI 安全审计工具，自动发现并修复应用漏洞。
 
-1. **[`browser-use/video-use`](https://github.com/browser-use/video-use)**  🔥+196
-   Edit videos with coding agents
+8. **[`browser-use/video-use`](https://github.com/browser-use/video-use)** 🔥+196
+   用编程 Agent 来编辑视频，把剪辑工作自动化。
 
 ### 📦 Haskell
 
-1. **[`simplex-chat/simplex-chat`](https://github.com/simplex-chat/simplex-chat)**  🔥+1,180
-   SimpleX - the first messaging network operating without user identifiers of any kind - 100% private by design! iOS, Android and desktop apps 📱!
+1. **[`simplex-chat/simplex-chat`](https://github.com/simplex-chat/simplex-chat)** 🔥+1,180
+   首个完全去标识化的隐私聊天网络，无用户 ID，100% 私密，支持 iOS/Android/桌面。
 
 ### 🌐 HTML
 
-1. **[`ripienaar/free-for-dev`](https://github.com/ripienaar/free-for-dev)**  🔥+495
-   A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev
+1. **[`ripienaar/free-for-dev`](https://github.com/ripienaar/free-for-dev)** 🔥+495
+   开发者免费服务大全，收录各类 SaaS/PaaS/IaaS 的免费层，运维和开发必备清单。
 
 ### 💠 C
 
-1. **[`DeusData/codebase-memory-mcp`](https://github.com/DeusData/codebase-memory-mcp)**  🔥+2,190
-   High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary…
+1. **[`DeusData/codebase-memory-mcp`](https://github.com/DeusData/codebase-memory-mcp)** 🔥+2,190
+   高性能代码智能 MCP 服务器，毫秒级索引代码库为持久知识图谱，支持 158 种语言。
 
 ### 🍎 Swift
 
-1. **[`altic-dev/FluidVoice`](https://github.com/altic-dev/FluidVoice)**  🔥+365
-   FluidVoice - Fastest macOS Offline Dictation app - Voice to Text fully Local. One ⭐ takes us a long way :))
+1. **[`altic-dev/FluidVoice`](https://github.com/altic-dev/FluidVoice)** 🔥+365
+   macOS 上最快的离线听写工具，语音转文字全本地处理，不联网。
 
 ### 📦 其他
 
-1. **[`ByteByteGoHq/system-design-101`](https://github.com/ByteByteGoHq/system-design-101)**  🔥+250
-   Explain complex systems using visuals and simple terms. Help you prepare for system design interviews.
+1. **[`ByteByteGoHq/system-design-101`](https://github.com/ByteByteGoHq/system-design-101)** 🔥+250
+   用视觉和通俗语言解释复杂系统设计，面试备考利器。
 
 ---
+
 *由 HelloDaily 自动生成 · 2026-06-29*

@@ -167,8 +167,8 @@ def generate_markdown(repos):
         emoji = lang_emoji(lang)
         md += f"### {emoji} {lang}\n\n"
         for r in items:
-            stars_str = f"⭐ {r['stars']}" if r['stars'] else ""
-            today_str = f" 🔥+{r['stars_today']}" if r['stars_today'] else ""
+            stars_str = f"🌟 {r['stars']}" if r['stars'] else ""
+            today_str = f" +{r['stars_today']}/日" if r['stars_today'] else ""
             badge = f"{stars_str}{today_str}" if (stars_str or today_str) else ""
             md += f"1. **[`{r['name']}`](https://github.com/{r['name']})**"
             if badge:

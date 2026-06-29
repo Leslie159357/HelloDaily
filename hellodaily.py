@@ -214,11 +214,11 @@ def generate_markdown(repos):
             if i > 0:
                 prev_name = os.path.basename(all_files[i-1])
                 prev_num = i  # 第 {i} 期
-                prev_link = f'<a href="content/{prev_name}">『上一期』</a>'
+                prev_link = f'<a href="{prev_name}">『上一期』</a>'
             if i < len(all_files) - 1:
                 next_name = os.path.basename(all_files[i+1])
                 next_num = i + 2  # 第 {i+2} 期
-                next_link = f'<a href="content/{next_name}">『下一期』</a>'
+                next_link = f'<a href="{next_name}">『下一期』</a>'
             break
 
     md += "\n\n"

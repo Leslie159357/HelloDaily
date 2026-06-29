@@ -1,6 +1,7 @@
 # 《HelloDaily》第 002 期
 > 兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！
-> 本期内容精选自第 123 期
+> 本期内容精选自第 2 期
+<!-- source_volume: 123 -->
 
 ## 目录
 
@@ -29,22 +30,22 @@
 6、[cupy/cupy](https://github.com/cupy/cupy) 🌟 11,798
    专为GPU优化的NumPy与SciPy
 
-7、[soxoj/maigret](https://github.com/soxoj/maigret) 🌟 34,311
+7、[soxoj/maigret](https://github.com/soxoj/maigret) 🌟 34,312
    🕵️‍♂️ 通过用户名从3000+网站收集人物档案
 
-8、[commaai/openpilot](https://github.com/commaai/openpilot)
-   openpilot是机器人操作系统，目前可为300+车型升级驾驶辅助系统。
+8、[commaai/openpilot](https://github.com/commaai/openpilot) 🌟 62,740
+   openpilot是机器人操作系统，目前可为300+款汽车升级驾驶辅助系统。
 
-9、[xbtlin/ai-berkshire](https://github.com/xbtlin/ai-berkshire)
+9、[xbtlin/ai-berkshire](https://github.com/xbtlin/ai-berkshire) 🌟 6,548
    AI 时代的伯克希尔：基于 Claude Code / Codex 的价值投资研究框架。巴菲特·芒格·段永平·李录四大师方法论 + 多Agent并行研究。| AI-era Berkshire: a value investing research framework built for Claude Code / Codex. 4 masters' methodologies + multi-ag…
 
-10、[browser-use/video-use](https://github.com/browser-use/video-use)
+10、[browser-use/video-use](https://github.com/browser-use/video-use) 🌟 11,858
    用编程代理编辑视频
 
-11、[Unclecheng-li/VulnClaw](https://github.com/Unclecheng-li/VulnClaw)
+11、[Unclecheng-li/VulnClaw](https://github.com/Unclecheng-li/VulnClaw) 🌟 1,099
    基于 AI Agent + MCP 工具链 + 渗透 Skill 编排， 配合大语言模型， 自然语言输入 → 自动完成「信息收集 → 漏洞发现 → 漏洞利用 → 报告生成」全流程。
 
-12、[HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading)
+12、[HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) 🌟 15,030
    "Vibe-Trading：您的个人交易助手"
 
 ### 🟨 JavaScript
@@ -100,7 +101,7 @@
 1、[Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills) 🌟 35,343
    用于学术研究的 Claude Code 技能包。这是一套面向学术研究的 Claude Code 技能包，将查文献、引用验证、数据核查、逻辑一致性检查和写作风格校准等繁琐的工作交给 AI 处理。它不是替你写论文，而是让你专注于提出问题、选定方向和解读结论。
 
-2、[DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) 🌟 67,112
+2、[DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) 🌟 67,116
    让 AI 编程助手少写代码。该项目是把一位懒得多写一行代码的资深程序员，装进你的 AI 编程助手的技能包。让 AI 少写代码，防止过度工程化，可减少约 54% 代码量、20% 花费和 27% 时间。
 
 3、[hardikpandya/stop-slop](https://github.com/hardikpandya/stop-slop) 🌟 12,982
@@ -131,7 +132,7 @@
 2、[Mbed-TLS/mbedtls](https://github.com/Mbed-TLS/mbedtls) 🌟 6,747
    灵活易用的 TLS 库。该项目是用 C 语言编写的加密库，可用于实现加密原语、X.509 证书操作以及 SSL/TLS 和 DTLS 协议。它体积小巧、易于移植，并提供丰富的示例，适用于物联网和嵌入式系统等资源有限的设备。
 
-3、[veracrypt/VeraCrypt](https://github.com/veracrypt/VeraCrypt)
+3、[veracrypt/VeraCrypt](https://github.com/veracrypt/VeraCrypt) 🌟 10,449
    基于TrueCrypt的高安全性磁盘加密工具
 
 ### 🦀 Rust
@@ -153,8 +154,8 @@
 2、[ggbond268/MacTools](https://github.com/ggbond268/MacTools) 🌟 297
    住在菜单栏里的 macOS 工具集合。这是一款免费开源的 macOS 菜单栏工具，将一堆常用的系统操作和实用功能放到菜单栏里，支持防休眠、自动隐藏 Dock、系统静音、Xcode 清理、弹出磁盘、清空废纸篓、IP 查询和翻译等功能。
 
-3、[altic-dev/FluidVoice](https://github.com/altic-dev/FluidVoice) 🌟 4,319
-   FluidVoice——macOS最快的离线听写应用，语音转文字完全本地运行。一个⭐️就是我们的动力:))
+3、[altic-dev/FluidVoice](https://github.com/altic-dev/FluidVoice) 🌟 4,322
+   FluidVoice——macOS最快的离线听写应用，语音转文字完全本地运行。一颗⭐️就能让我们走得更远:))
 
 ### ⚡ C++
 
@@ -166,11 +167,11 @@
 
 ### 🐚 Shell
 
-1、[msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) 🌟 118,761
-   一站式AI代理服务——从前端高手到Reddit社区达人，从创意注入者到现实核查员，每个代理都是个性鲜明、流程专业、成果可靠的专家。
+1、[msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) 🌟 118,766
+   一站式AI代理服务——从前端魔法师到Reddit社区忍者，从创意注入者到现实核查员，每个代理都是兼具个性、流程与成果的专业专家。
 
-2、[0xNyk/council-of-high-intelligence](https://github.com/0xNyk/council-of-high-intelligence)
-   18个AI角色（亚里士多德、费曼、卡尼曼等）通过多轮辩论帮你决策，整合多平台LLM，指令：/council
+2、[0xNyk/council-of-high-intelligence](https://github.com/0xNyk/council-of-high-intelligence) 🌟 1,816
+   18个AI角色（亚里士多德、费曼、卡尼曼等）通过多轮结构化讨论，跨平台帮你决策。一键指令：/council
 
 ### 🎯 C#
 
@@ -184,18 +185,18 @@
 
 ### 📦 Haskell
 
-1、[simplex-chat/simplex-chat](https://github.com/simplex-chat/simplex-chat) 🌟 16,456
-   SimpleX——首个无需任何用户标识的通信网络，设计100%隐私！支持iOS、安卓及桌面应用📱！
+1、[simplex-chat/simplex-chat](https://github.com/simplex-chat/simplex-chat) 🌟 16,461
+   SimpleX——首个无需任何用户标识的通信网络，设计上100%私密！支持iOS、安卓及桌面应用📱！
 
 ### 🌐 HTML
 
-1、[ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev)
+1、[ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) 🌟 126,657
    涵盖SaaS、PaaS和IaaS的免费服务清单，专为运维和基建开发者精选。
 
 ### 🔷 TypeScript
 
-1、[logto-io/logto](https://github.com/logto-io/logto)
-   🧑‍🚀 基于OIDC和OAuth 2.1的SaaS与AI应用认证授权基础设施，支持多租户、单点登录和RBAC。
+1、[logto-io/logto](https://github.com/logto-io/logto) 🌟 12,587
+   🧑‍🚀 基于OIDC和OAuth 2.1构建的SaaS与AI应用认证授权基础设施，支持多租户、单点登录和RBAC。
 
 
 

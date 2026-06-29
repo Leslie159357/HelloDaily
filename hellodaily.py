@@ -67,6 +67,7 @@ def fetch_by_volume(volume):
 
 def fetch_stars(repos):
     """从 GitHub API 批量获取 star 数"""
+    import time
     token = os.environ.get("GITHUB_TOKEN", "")
     headers = {
         "User-Agent": "HelloDaily/1.0",
@@ -75,22 +76,33 @@ def fetch_stars(repos):
     if token:
         headers["Authorization"] = f"Bearer {token}"
 
+    total = sum(1 for r in repos if not r["stars"] and r["name"])
+    if not total:
+        return repos
+
     count = 0
-    for r in repos:
+    for i, r in enumerate(repos):
         if r["stars"] or not r["name"]:
             continue
         try:
+            # 加间隔避免限速
+            time.sleep(0.2)
             url = f"https://api.github.com/repos/{r['name']}"
             req = urllib.request.Request(url, headers=headers)
             resp = urllib.request.urlopen(req, timeout=5)
             data = json_mod.loads(resp.read().decode("utf-8"))
-            if "stargazers_count" in data:
+            if "stargazers_count" in data and data["stargazers_count"] is not None:
                 r["stars"] = f"{data['stargazers_count']:,}"
                 count += 1
-        except Exception:
+            elif "message" in data and "rate limit" in data["message"].lower():
+                print(f"  ⚠️ API 限速，剩余 {total - i} 个跳过")
+                break
+        except Exception as e:
+            if i < 3:
+                print(f"  ⚠️ {r['name']}: {e}")
             pass
     if count:
-        print(f"⭐ 获取到 {count} 个项目的 star 数")
+        print(f"⭐ 获取到 {count}/{total} 个项目的 star 数")
     return repos
 
 
@@ -227,7 +239,11 @@ def get_used_volumes(content_dir):
     for f in glob.glob(os.path.join(content_dir, "HelloDaily-*.md")):
         with open(f, "r", errors="ignore") as fh:
             text = fh.read()
-            for m in re.finditer(r'来自.*?第\s*(\d+)\s*期', text):
+            # 新格式: 隐藏注释
+            for m in re.finditer(r'<!--\s*source_volume:\s*(\d+)', text):
+                used.add(int(m.group(1)))
+            # 旧格式兼容: "来自第 123 期"
+            for m in re.finditer(r'来自.*?第\s*(\d{3,})\s*期', text):
                 used.add(int(m.group(1)))
     return used
 
@@ -266,7 +282,8 @@ def generate_markdown(repos, volume):
 
     md = f"# 《HelloDaily》{issue_str}\n"
     md += f"> 兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！\n"
-    md += f"> 本期内容精选自第 {volume} 期\n\n"
+    md += f"> 本期内容精选自第 {issue_num} 期\n"
+    md += f"<!-- source_volume: {volume} -->\n\n"
     md += f"## 目录\n\n"
     md += f"（点击右上角目录图标）\n\n"
     md += f"## 内容\n"

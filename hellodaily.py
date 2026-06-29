@@ -280,6 +280,12 @@ if __name__ == "__main__":
 
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(f"""<p align="center">
+  <img src="https://raw.githubusercontent.com/521xueweihan/img_logo/master/logo/readme.gif"/><br>
+  分享 GitHub 上有趣、入门级的开源项目。<br>
+  兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/HelloDaily-每日开源精选-ff69b4?style=for-the-badge&logo=github"/><br>
   🌟 每天 09:00 自动推送 GitHub Trending 精选项目<br>
   链接 + 中文解读 · 按语言分类

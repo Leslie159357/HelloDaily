@@ -148,6 +148,66 @@ def fetch_trending(language=""):
     return repos
 
 
+def translate_descriptions(repos):
+    """Translate English descriptions to Chinese using LLM API (SiliconFlow/deepseek)"""
+    import urllib.parse, json as json_mod
+
+    api_key = os.environ.get("OPENAI_API_KEY", "")
+    base_url = os.environ.get("OPENAI_BASE_URL", "https://api.siliconflow.cn/v1")
+    if not api_key:
+        return repos  # no key, skip translation
+
+    # Build prompt with all descriptions
+    lines = []
+    for i, r in enumerate(repos):
+        if r["desc"]:
+            lines.append(f"{i+1}. {r['name']}: {r['desc']}")
+
+    if not lines:
+        return repos
+
+    prompt = "把以下 GitHub 开源项目的英文简介翻译成简洁的中文（20字以内），只返回编号+译文，每行一条：\n\n" + "\n".join(lines)
+
+    data = json_mod.dumps({
+        "model": "deepseek-ai/DeepSeek-V3",
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.1,
+        "max_tokens": 4096,
+    }).encode("utf-8")
+
+    req = urllib.request.Request(
+        f"{base_url}/chat/completions",
+        data=data,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {api_key}",
+        }
+    )
+    try:
+        resp = urllib.request.urlopen(req, timeout=30).read().decode("utf-8")
+        result = json_mod.loads(resp)
+        text = result["choices"][0]["message"]["content"]
+
+        # Parse translations back into repos
+        for line in text.strip().split("\n"):
+            line = line.strip()
+            if not line or "." not in line:
+                continue
+            idx_part = line.split(".")[0].strip()
+            if not idx_part.isdigit():
+                continue
+            idx = int(idx_part) - 1
+            if 0 <= idx < len(repos):
+                trans = ".".join(line.split(".")[1:]).strip()
+                # Remove leading number if any
+                if trans and repos[idx]["desc"]:
+                    repos[idx]["desc"] = trans[:80]  # keep it concise
+    except Exception as e:
+        print(f"⚠️ 翻译失败: {e}，使用原始英文描述")
+
+    return repos
+
+
 def lang_emoji(lang):
     emoji_map = {
         "Python": "🐍", "JavaScript": "🟨", "TypeScript": "🔷", "Java": "☕",
@@ -240,6 +300,10 @@ if __name__ == "__main__":
     print("🌐 正在获取 GitHub Trending...")
     repos = fetch_trending()
     print(f"✅ 获取到 {len(repos)} 个项目")
+
+    print("🌏 正在翻译中文简介...")
+    repos = translate_descriptions(repos)
+    print(f"✅ 翻译完成")
 
     md, issue_num, today = generate_markdown(repos)
     issue_str = f"第 {issue_num:03d} 期"

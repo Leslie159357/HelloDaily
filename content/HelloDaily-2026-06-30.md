@@ -11,61 +11,61 @@
 ### 🐍 Python
 
 1、[cupy/cupy](https://github.com/cupy/cupy) 🌟 11,794 +352/日
-   NumPy & SciPy for GPU
+   GPU版NumPy/SciPy
 
 2、[soxoj/maigret](https://github.com/soxoj/maigret) 🌟 34,307 +191/日
-   🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites
+   用户名查人，覆盖3000+站点
 
-3、[commaai/openpilot](https://github.com/commaai/openpilot) 🌟 62,735 +465/日
-   openpilot is an operating system for robotics. Currently, it upgrades the driver assistance system on 300+ supported cars.
+3、[commaai/openpilot](https://github.com/commaai/openpilot) 🌟 62,736 +465/日
+   机器人OS，支持300+车型
 
 4、[xbtlin/ai-berkshire](https://github.com/xbtlin/ai-berkshire) 🌟 6,541 +1,397/日
-   AI 时代的伯克希尔：基于 Claude Code / Codex 的价值投资研究框架。巴菲特·芒格·段永平·李录四大师方法论 + 多Agent并行研究。| AI-era Berkshire: a value investing research framework built for Claude Code / Codex. 4 masters' methodologies + multi-ag…
+   AI时代价值投资框架
 
-5、[browser-use/video-use](https://github.com/browser-use/video-use) 🌟 11,849 +976/日
-   Edit videos with coding agents
+5、[browser-use/video-use](https://github.com/browser-use/video-use) 🌟 11,851 +976/日
+   代码代理视频编辑
 
 6、[Unclecheng-li/VulnClaw](https://github.com/Unclecheng-li/VulnClaw) 🌟 1,096 +105/日
-   基于 AI Agent + MCP 工具链 + 渗透 Skill 编排， 配合大语言模型， 自然语言输入 → 自动完成「信息收集 → 漏洞发现 → 漏洞利用 → 报告生成」全流程。
+   AI渗透测试全流程
 
 7、[HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) 🌟 15,021 +840/日
-   "Vibe-Trading: Your Personal Trading Agent"
+   个人化交易代理
 
 ### 🐚 Shell
 
-1、[msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) 🌟 118,745 +1,221/日
-   A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, a…
+1、[msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) 🌟 118,747 +1,221/日
+   全能AI代理，各有所长
 
-2、[0xNyk/council-of-high-intelligence](https://github.com/0xNyk/council-of-high-intelligence) 🌟 1,806 +323/日
-   18 AI personas deliberate your hardest decisions across multiple LLM providers. Aristotle, Feynman, Kahneman, Torvalds & more — structured multi-round deliberation with genuine model diversity. One co…
+2、[0xNyk/council-of-high-intelligence](https://github.com/0xNyk/council-of-high-intelligence) 🌟 1,807 +323/日
+   多模型AI智囊团决策
 
 ### 🔷 TypeScript
 
-1、[logto-io/logto](https://github.com/logto-io/logto) 🌟 12,581 +77/日
-   🧑‍🚀 Authentication and authorization infrastructure for SaaS and AI apps, built on OIDC and OAuth 2.1 with multi-tenancy, SSO, and RBAC.
+1、[logto-io/logto](https://github.com/logto-io/logto) 🌟 12,583 +77/日
+   SaaS/AI认证授权基建
 
-2、[refactoringhq/tolaria](https://github.com/refactoringhq/tolaria) 🌟 17,467 +249/日
-   Desktop app to manage markdown knowledge bases
+2、[refactoringhq/tolaria](https://github.com/refactoringhq/tolaria) 🌟 17,468 +249/日
+   Markdown知识库管理
 
 ### 📦 Haskell
 
 1、[simplex-chat/simplex-chat](https://github.com/simplex-chat/simplex-chat) 🌟 16,436 +1,611/日
-   SimpleX - the first messaging network operating without user identifiers of any kind - 100% private by design! iOS, Android and desktop apps 📱!
+   无ID消息网络，100%隐私设计
 
 ### 🍎 Swift
 
-1、[altic-dev/FluidVoice](https://github.com/altic-dev/FluidVoice) 🌟 4,311 +836/日
-   FluidVoice - Fastest macOS Offline Dictation app - Voice to Text fully Local. One ⭐ takes us a long way :))
+1、[altic-dev/FluidVoice](https://github.com/altic-dev/FluidVoice) 🌟 4,314 +836/日
+   最快macOS离线听写
 
 ### 🌐 HTML
 
-1、[ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) 🌟 126,650 +1,971/日
-   A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev
+1、[ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) 🌟 126,651 +1,971/日
+   开发者免费资源大全
 
 ### 💠 C
 
 1、[veracrypt/VeraCrypt](https://github.com/veracrypt/VeraCrypt) 🌟 10,443 +187/日
-   Disk encryption with strong security based on TrueCrypt
+   高强度磁盘加密工具
 
 
 

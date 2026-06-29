@@ -226,7 +226,7 @@ if __name__ == "__main__":
 
     # Update README
     readme_path = os.path.join(OUTPUT_DIR, "README.md")
-    latest_link = f"[**{issue_str} · {today}（HelloGitHub 第{volume}期）**](content/{filename})"
+    latest_link = f"[**{issue_str} · {today}**](content/{filename})"
 
     all_issues = sorted(glob.glob(os.path.join(content_dir, "HelloDaily-*.md")), reverse=True)
     entries_per_row = 5
@@ -269,7 +269,7 @@ if __name__ == "__main__":
 
 ## 最新一期
 
-📅 **[{issue_str} · {today}（HelloGitHub 第{volume}期）](content/{filename})**
+📅 **[第 {issue_num:03d} 期 · {today}](content/{filename})**
 
 ## 往期
 

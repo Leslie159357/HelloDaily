@@ -15,28 +15,17 @@
 
 ## 最新一期
 
-📅 **[HelloDaily · 2026-06-29](content/HelloDaily-2026-06-29.md)** — 13 个项目
+📅 **[第 001 期 · 2026-06-29](content/HelloDaily-2026-06-29.md)**
 
 ## 往期
 
-| 日期 | 项目数 | 
-|:----:|:-----:|
-| 2026-06-29 | 13 |
+| :card_index: | :jack_o_lantern: | :beer: | :fish_cake: | :octocat: |
+| ------- | ----- | ------------ | ------ | --------- |
+| [第 001 期](content/HelloDaily-2026-06-29.md) |  |  |  |  |
 
 ## 关于
 
 每天 09:00 自动抓取 **GitHub Trending**，按语言分类，链接 + 🌟 总星数 + 中文解读，推送至仓库。
-
-## 项目结构
-
-```
-HelloDaily/
-├── content/           # 每期内容
-│   └── HelloDaily-*.md
-├── hellodaily.py      # 抓取脚本
-├── README.md
-└── .gitignore
-```
 
 ---
 

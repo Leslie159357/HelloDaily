@@ -262,11 +262,13 @@ if __name__ == "__main__":
     entries_per_row = 5
     table_rows = []
     # 获取所有已有期号
-    all_issues = sorted(glob.glob(os.path.join(content_dir, "HelloDaily-*.md")))
+    all_issues = sorted(glob.glob(os.path.join(content_dir, "HelloDaily-*.md")), reverse=True)
     issue_links = []
-    for i, fpath in enumerate(all_issues, 1):
+    for i, fpath in enumerate(all_issues):
         fname = os.path.basename(fpath)
-        issue_links.append(f"[第 {i:03d} 期](content/{fname})")
+        # 期号按文件数倒序
+        issue_num = len(all_issues) - i
+        issue_links.append(f"[第 {issue_num:03d} 期](content/{fname})")
 
     # 按 5 列分组
     for i in range(0, len(issue_links), entries_per_row):

@@ -13,10 +13,10 @@
 1、[commaai/openpilot](https://github.com/commaai/openpilot) 🌟 62,614 +266/日
    openpilot is an operating system for robotics. Currently, it upgrades the driver assistance system on 300+ supported cars.
 
-2、[xbtlin/ai-berkshire](https://github.com/xbtlin/ai-berkshire) 🌟 6,147 +1,445/日
+2、[xbtlin/ai-berkshire](https://github.com/xbtlin/ai-berkshire) 🌟 6,151 +1,445/日
    AI 时代的伯克希尔：基于 Claude Code / Codex 的价值投资研究框架。巴菲特·芒格·段永平·李录四大师方法论 + 多Agent并行研究。| AI-era Berkshire: a value investing research framework built for Claude Code / Codex. 4 masters' methodologies + multi-ag…
 
-3、[Robbyant/lingbot-map](https://github.com/Robbyant/lingbot-map) 🌟 8,458 +372/日
+3、[Robbyant/lingbot-map](https://github.com/Robbyant/lingbot-map) 🌟 8,460 +372/日
    A feed-forward 3D foundation model for reconstructing scenes from streaming data
 
 4、[cupy/cupy](https://github.com/cupy/cupy) 🌟 11,652 +174/日
@@ -25,10 +25,10 @@
 5、[opendatalab/MinerU](https://github.com/opendatalab/MinerU) 🌟 72,084 +380/日
    Transforms complex documents like PDFs and Office docs into LLM-ready markdown/JSON for your Agentic workflows.
 
-6、[HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) 🌟 14,730 +492/日
+6、[HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) 🌟 14,731 +492/日
    "Vibe-Trading: Your Personal Trading Agent"
 
-7、[usestrix/strix](https://github.com/usestrix/strix) 🌟 27,075 +122/日
+7、[usestrix/strix](https://github.com/usestrix/strix) 🌟 27,077 +122/日
    Open-source AI hackers to find and fix your app’s vulnerabilities.
 
 8、[browser-use/video-use](https://github.com/browser-use/video-use) 🌟 11,515 +196/日
@@ -36,17 +36,17 @@
 
 ### 📦 Haskell
 
-1、[simplex-chat/simplex-chat](https://github.com/simplex-chat/simplex-chat) 🌟 15,778 +1,180/日
+1、[simplex-chat/simplex-chat](https://github.com/simplex-chat/simplex-chat) 🌟 15,779 +1,180/日
    SimpleX - the first messaging network operating without user identifiers of any kind - 100% private by design! iOS, Android and desktop apps 📱!
 
 ### 🌐 HTML
 
-1、[ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) 🌟 126,197 +495/日
+1、[ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) 🌟 126,198 +495/日
    A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev
 
 ### 💠 C
 
-1、[DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) 🌟 20,607 +2,190/日
+1、[DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) 🌟 20,610 +2,190/日
    High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary…
 
 ### 🍎 Swift

@@ -27,7 +27,7 @@
 
 | :card_index: | :jack_o_lantern: | :beer: | :fish_cake: | :octocat: |
 | ------- | ----- | ------------ | ------ | --------- |
-| [第 001 期](content/HelloDaily-2026-06-29.md) | [第 002 期](content/HelloDaily-2026-06-30.md) |  |  |  |
+| [第 002 期](content/HelloDaily-2026-06-30.md) | [第 001 期](content/HelloDaily-2026-06-29.md) |  |  |  |
 
 ## 关于
 

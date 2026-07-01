@@ -2,6 +2,7 @@
 > 兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！
 > 本期内容精选自第 4 期
 <!-- source_volume: 123 -->
+<!-- date: 2026-07-01 (同003期, 均为今日生成) -->
 
 ## 目录
 
@@ -218,7 +219,7 @@
 
 
 <p align="center">
-    <a href="https://github.com/Leslie159357/HelloDaily">『GitHub』</a>
+    <a href="HelloDaily-2026-07-01.md">『上一期』</a> | <a href="https://github.com/Leslie159357/HelloDaily">『GitHub』</a>
 </p>
 
 ---

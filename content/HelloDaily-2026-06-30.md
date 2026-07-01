@@ -216,7 +216,8 @@
 
 
 <p align="center">
-    <a href="HelloDaily-2026-06-29.md">『上一期』</a> | <a href="https://github.com/Leslie159357/HelloDaily">『GitHub』</a> | <a href="HelloDaily-2026-07-01.md">『下一期』</a>
+    <a href="HelloDaily-2026-06-29.md">『上一期』</a> | 
+    <a href="HelloDaily-2026-06-29.md">『上一期』</a> | <a href="https://github.com/Leslie159357/HelloDaily">『GitHub』</a> | <a href="HelloDaily-2026-07-01.md">『下一期』</a> | <a href="HelloDaily-2026-07-01.md">『下一期』</a>
 </p>
 
 ---

@@ -1,7 +1,7 @@
 # 《HelloDaily》第 003 期
 > 兴趣是最好的老师，HelloDaily 帮你找到开源的乐趣！
 > 本期内容精选自第 3 期
-<!-- source_volume: 123 -->
+<!-- source_volume: 120 -->
 
 ## 目录
 
@@ -12,207 +12,213 @@
 
 ### 🐍 Python
 
-1、[YusufB5/ASCILINE](https://github.com/YusufB5/ASCILINE) 🌟 2,247
-   把视频变成字符流的引擎。这是一款跨平台的实时 ASCII 视频渲染引擎，可实现 30 FPS 的流畅播放效果，支持 URL 直接播放、音视频同步、自适应帧编解码等功能，ASCII 模式下无需 GPU 即可流畅运行。
+1、[chardet/chardet](https://github.com/chardet/chardet) 🌟 2,644
+   字符编码检测 Python 库。这是一款通用的字符编码检测 Python 库，能够自动识别出文本所使用的编码格式，支持 UTF-8、GB2312、ISO-8859-1 等 99 种编码和 49 种语言，可作为库或命令行工具使用。
 
-2、[psf/black](https://github.com/psf/black) 🌟 41,648
-   省心的 Python 代码格式化工具。该项目是由 Python 软件基金会（PSF）官方维护的代码格式化工具。配置项少、结果可重现，只需一条命令，代码就会变成统一风格，彻底消除团队的代码风格之争。的分享
+2、[antoniorodr/cronboard](https://github.com/antoniorodr/cronboard) 🌟 1,400
+   Crontab 终端可视化管理工具。这是一款基于 Textual 构建的 crontab 可视化管理工具，可用于管理本地和远程服务器的定时任务，支持搜索任务、路径自动补全、表达式转为自然语言描述等功能。
 
-3、[mpmath/mpmath](https://github.com/mpmath/mpmath) 🌟 1,137
-   任意精度的 Python 数学计算库。该项目是可以计算到任意小数位的 Python 库，支持求根、线性代数、微积分、实数和复数运算等功能，适用于处理普通浮点数不够用的高精度数值计算场景。的分享
+3、[TomBadash/Mouser](https://github.com/TomBadash/Mouser) 🌟 4,789
+   罗技鼠标按键重映射工具。这是一款轻量级、免账号登录的罗技鼠标按键重映射工具，可根据不同应用自动切换按键配置，支持自定义鼠标灵敏度、滚动方向和手势。
 
-4、[D4Vinci/Scrapling](https://github.com/D4Vinci/Scrapling) 🌟 67,413
-   自适应网页改版的 Python 爬虫框架。这是一款自适应的 Python 爬虫框架，解析器会学习网站结构变化，在页面改版后自动重新定位目标元素。内置开箱即用的抓取器，支持多会话并发、断点继续、域名屏蔽和 MCP 服务等功能。的分享
+4、[saulpw/visidata](https://github.com/saulpw/visidata) 🌟 9,163
+   终端里的交互式数据文件浏览工具。这是一款 Python 开发的多功能查看数据文件的命令行工具，能够直观且流畅地浏览百万行的数据文件，支持 csv、sqlite、json、xlsx 和 hdf5 等多种数据格式，部分格式需要额外安装相应的 Python 库。
 
-5、[kernalix7/winpodx](https://github.com/kernalix7/winpodx) 🌟 1,434
-   把 Windows 应用“嵌”进 Linux 桌面的工具。这是一款在 Linux 上运行 Windows 应用的开源工具，无需进入完整的 Windows 桌面。它会在后台用容器起一个 Windows 系统，并通过 FreeRDP 把每个 Windows 应用变成独立原生的 Linux 窗口，支持固定到任务栏、Alt-Tab 切换、文件关联和 USB 设备。
-
-6、[usestrix/strix](https://github.com/usestrix/strix) 🌟 28,132
+5、[usestrix/strix](https://github.com/usestrix/strix) 🌟 28,142
    开源人工智能渗透测试工具，用于查找并修复应用程序的漏洞。
 
-7、[browser-use/video-use](https://github.com/browser-use/video-use) 🌟 12,603
+6、[browser-use/video-use](https://github.com/browser-use/video-use) 🌟 12,619
    使用编码代理编辑视频
 
-8、[xbtlin/ai-berkshire](https://github.com/xbtlin/ai-berkshire) 🌟 7,498
+7、[xbtlin/ai-berkshire](https://github.com/xbtlin/ai-berkshire) 🌟 7,508
    AI 时代的伯克希尔：基于 Claude Code / Codex 的价值投资研究框架。巴菲特·芒格·段永平·李录四大师方法论 + 多Agent并行研究。| AI-era Berkshire: a value investing research framework built for Claude Code / Codex. 4 masters' methodologies + multi-ag…
 
-9、[Mebus/cupp](https://github.com/Mebus/cupp) 🌟 6,105
+8、[Mebus/cupp](https://github.com/Mebus/cupp) 🌟 6,107
    通用用户密码分析器 (CUPP)
 
-10、[google/agents-cli](https://github.com/google/agents-cli) 🌟 4,199
+9、[google/agents-cli](https://github.com/google/agents-cli) 🌟 4,206
    CLI 和技能可将任何编码助理转变为在 Google Cloud 上创建、评估和部署 AI 代理的专家。
 
-11、[roboflow/supervision](https://github.com/roboflow/supervision) 🌟 45,913
+10、[roboflow/supervision](https://github.com/roboflow/supervision) 🌟 45,917
    我们为您编写可重复使用的计算机视觉工具。 
 
-12、[HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) 🌟 15,797
+11、[HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) 🌟 15,804
    “Vibe-Trading：您的个人交易代理”
 
-13、[Robbyant/lingbot-map](https://github.com/Robbyant/lingbot-map) 🌟 8,872
+12、[Robbyant/lingbot-map](https://github.com/Robbyant/lingbot-map) 🌟 8,876
    用于从流数据重建场景的前馈 3D 基础模型
 
 ### 🟨 JavaScript
 
-1、[emdash-cms/emdash](https://github.com/emdash-cms/emdash) 🌟 10,990
-   WordPress 的无服务器替代品。该项目是基于 Astro 构建的内容管理系统，可作为 WordPress 的替代品。它提供 WordPress 导入、可视化编辑、全文搜索、定时发布等功能，可直接运行在 Cloudflare 或本地 Node.js+SQLite 等环境上。
+1、[shuding/cobe](https://github.com/shuding/cobe) 🌟 5,419
+   仅 5KB 的交互式地球库。这是一款超轻量级的地球 3D 可视化库。仅需几行代码，即可在网页中渲染出精美的 3D 交互式地球视觉效果。
 
-2、[vikiboss/r2-web](https://github.com/vikiboss/r2-web) 🌟 292
-   纯前端的在线文件管理平台。这是一款纯前端的 Cloudflare R2（云存储）文件管理器，打开网页输入 R2 凭证，就能直接管理桶里的文件。它内置图片、视频、音频和文本预览，支持拖拽/粘贴上传、图片压缩、批量管理等功能。的分享
+2、[pascalorg/editor](https://github.com/pascalorg/editor) 🌟 17,145
+   极简的 3D 建筑编辑器。这是一款基于 React 和 WebGPU 构建的 3D 建筑编辑器，可以在浏览器中创建、编辑和分享 3D 建筑模型。
 
-3、[aidenybai/react-scan](https://github.com/aidenybai/react-scan) 🌟 21,521
-   自动揪出 React 应用性能问题的工具。该项目是专门用来发现 React 应用性能问题的可视化调试工具，无需改动任何代码，只需添加一个 script 标签或运行一条命令，即可在页面上高亮显示哪些组件发生了不必要的重渲染，适用于 React、Next.js、Vite、Remix 等项目。的分享
+3、[EmulatorJS/EmulatorJS](https://github.com/EmulatorJS/EmulatorJS) 🌟 3,942
+   在浏览器中运行多种复古游戏的模拟器。这是一款基于 JavaScript 和 WebAssembly 开发的复古游戏模拟器，支持 NES、SNES、GBA、PSP、PS1、街机等经典游戏。用户只需在网页中拖入游戏 ROM 即可开始游戏，支持存档、联机对战、屏幕录制等功能。
 
-4、[jasonkneen/tiny-world-builder](https://github.com/jasonkneen/tiny-world-builder) 🌟 1,336
-   在浏览器里搭建 3D 体素迷你世界。这是一个基于 Three.js 构建的 3D 体素世界编辑器，类似迷你版《我的世界》创作沙盘。无需安装打开网页即可搭建地形、修道路、挖河流、搭房子、种作物、摆道具，支持本地保存、导入/导出、车辆自动寻路和避障。
+4、[abhigyanpatwari/GitNexus](https://github.com/abhigyanpatwari/GitNexus) 🌟 43,338
+   生成代码仓库知识图谱的工具。该项目能够根据代码仓库生成包含调用链、依赖关系和执行流程的交互式知识图谱，为 Cursor、Claude Code 等 AI 编程工具提供结构化上下文。
 
-5、[refactoringhq/tolaria](https://github.com/refactoringhq/tolaria) 🌟 17,816
-   基于 Git 的本地 Markdown 知识库工具。这是一款用来管理 Markdown 知识库的桌面应用，每个知识库即一个 Git 仓库，天然拥有版本历史和变更记录。笔记以 Markdown 文件存储随时可迁移，并内置 MCP 服务器，支持 Claude Code、Codex 等 AI 工具直接读写知识库，适用于搭建个人第二大脑、沉淀团队文档或作为 AI 助手的长期记忆库。的分享
+5、[knadh/oat](https://github.com/knadh/oat) 🌟 5,352
+   极简零依赖的前端 UI 库。这是一个压缩后仅 8KB、零依赖的 UI 组件库，仅需引入极小体积的 CSS 和 JS 文件，就能轻松构建美观且包含常见组件的 Web 应用。的分享
 
 ### 🤖 人工智能
 
-1、[HaujetZhao/CapsWriter-Offline](https://github.com/HaujetZhao/CapsWriter-Offline) 🌟 5,942
-   超低延迟的离线语音输入工具。这是一款完全离线的语音输入工具，按住 CapsLock 键说话、松开即可转换为文字。支持实时语音识别、音频文件转录、数字格式转换、热词替换、LLM 润色等功能，所有录音均保存在本地，还可放进 U 盘即插即用。的分享
+1、[andrewyng/context-hub](https://github.com/andrewyng/context-hub) 🌟 13,751
+   减少 AI 编码幻觉的专属知识库。该项目是专为 Claude Code 等 AI 编程工具，提供由社区精心整理、版本化的 API 文档知识库，支持按需检索、本地标注和反馈循环等功能，有效减少 AI 生成代码时的幻觉问题。
 
-2、[XiaoLuoLYG/GOD](https://github.com/XiaoLuoLYG/GOD) 🌟 809
-   AI 智能体小镇。这是一款本地优先的多智能体模拟和实时操控平台，不同于只能旁观的 Agent 模拟器，支持随时暂停/回放、注入干预指令、向单个或全体成员提问，以及一键重置整个模拟世界和多种地图包。的分享
+2、[FireRedTeam/FireRed-OpenStoryline](https://github.com/FireRedTeam/FireRed-OpenStoryline) 🌟 3,027
+   AI 驱动的对话式视频创作智能体。这是一款基于 LLM/VLM 构建的自动化视频创作智能体。用户可通过自然语言描述意图，系统会自动完成素材收集、剪辑、构建故事线、配音和配乐，支持对话式精修，包括删减、重组、修改字幕等，并可一键保存为剪辑技能包，方便快速复刻同风格视频。的分享
 
-3、[THU-MAIC/OpenMAIC](https://github.com/THU-MAIC/OpenMAIC) 🌟 19,146
-   开源的 AI 互动课堂平台。该项目是由清华团队开发的多智能体互动课堂平台，可将任意主题或文档一键生成沉浸式课程，AI 老师和智能体同学实时授课、讨论、互动。它内置白板绘图和语音合成，课程可导出为 PPT 或交互式网页，支持 3D 可视化、模拟实验、小游戏、思维导图和在线编程。的分享
+3、[garrytan/gstack](https://github.com/garrytan/gstack) 🌟 118,447
+   让 AI 编程助手变身虚拟开发团队。这是一组提升 AI 编程助手开发能力的 Skills 集合，能够让 AI 模拟 YC 合伙人的提问方式，以及 CEO、架构师、设计师和测试等角色，将 Claude Code 变成一支可按需唤出的虚拟开发团队。
 
-4、[FareedKhan-dev/train-llm-from-scratch](https://github.com/FareedKhan-dev/train-llm-from-scratch) 🌟 7,885
-   从零开始训练大语言模型。该项目是手把手带你从零训练大语言模型的实战教程，不是简单调用 transformers 跑个示例，而是用 PyTorch 从底层实现 Transformer、预训练、监督微调、奖励模型和评测的完整流程。
+4、[strands-agents/harness-sdk](https://github.com/strands-agents/harness-sdk) 🌟 6,363
+   快速构建生产级智能体的 Python 框架。这是一个开发智能体 AI 应用的 Python 框架，可通过简单的代码实现从模型能力、工具调用到自主工作流的构建，支持多种模型、Agent Loop、多智能协同和语音对话等功能。
 
-5、[vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) 🌟 5,371
-   全模态模型推理框架。该项目是由 vLLM 官方开源的全模态推理与服务框架，在 vLLM 基础上扩展了图像、视频、音频的输入与生成能力，同时支持自回归模型与扩散 Transformer（DiT）等非自回归模型。
-
-### 🔵 Go
-
-1、[palemoky/chinese-poetry-api](https://github.com/palemoky/chinese-poetry-api) 🌟 1,166
-   开箱即用的中国古诗词 API 服务。该项目是用 Go 语言编写的中国古诗词 API 服务，收录了唐诗、宋词、元曲等近 40 万首作品。它提供 REST API 和 GraphQL 接口，支持全文搜索、IP 限流、按朝代/作者/诗型随机取诗和 Docker 一键部署。
-
-2、[palemoky/fight-the-landlord](https://github.com/palemoky/fight-the-landlord) 🌟 400
-   终端里的斗地主游戏。这是一款用 Go 编写的斗地主游戏，主打随机发牌、无控牌算法。支持联网对战、房间匹配、断线重连、记牌器、音乐开关等功能，还集成了快手开源的 DouZero 斗地主 AI，可作为机器人补位或对战。
-
-3、[gopasspw/gopass](https://github.com/gopasspw/gopass) 🌟 6,991
-   专为团队设计的命令行密码管理器。这是一款用于存储管理和同步密码、密钥与证书的命令行工具，可作为 UNIX 密码工具 pass 的替代品。默认用 GPG 加密和 Git 管理凭据，可通过 Git 仓库在多设备、多人团队之间同步。
-
-4、[tinyauthapp/tinyauth](https://github.com/tinyauthapp/tinyauth) 🌟 7,674
-   开源的零代码身份认证中间件。这是一个 Go 语言开发的极简认证中间件，可通过 Docker 快速部署。它能为任何 Web 应用或服务一键添加登录界面或 OAuth 登录（Google、GitHub 等），无需修改现有代码，可无缝集成到 Traefik、Caddy、Nginx 等主流反向代理，极大地简化了登录实现流程。
-
-### 🦀 Rust
-
-1、[AlexsJones/llmfit](https://github.com/AlexsJones/llmfit) 🌟 28,913
-   一条命令找出本地能运行的模型。这是一款用 Rust 编写的终端工具，能够自动检测本机的 CPU、GPU、内存等硬件信息，并推荐适合本地运行的大模型。它会从质量、速度、适配度和上下文等维度给模型打分排序，支持 Ollama、llama.cpp、MLX、vLLM、LM Studio 等主流本地推理环境。
-
-2、[rerun-io/rerun](https://github.com/rerun-io/rerun) 🌟 11,029
-   物理 AI 的多模态数据可视化平台。这是一款专为机器人和物理 AI 场景打造的多模态数据可视化平台，支持图像、点云、时序数据、关节状态等随时间变化的传感器数据。它内置实时查看器支持回放和多传感器并排对比，可通过 DataFrame 或 SQL 查询数据，并提供 Python、Rust 和 C++ SDK。的分享
-
-3、[smol-machines/smolvm](https://github.com/smol-machines/smolvm) 🌟 4,091
-   亚秒级冷启动的虚拟机管理工具。这是一款轻量级的虚拟机管理工具，虚拟机冷启动不到一秒。让你用接近容器的体验，获得虚拟机级别的隔离，兼容 Docker 镜像，支持将虚拟机打包成单个可执行文件，方便迁移和运行。
-
-4、[ogulcancelik/herdr](https://github.com/ogulcancelik/herdr) 🌟 9,023
-   位于您终端中的代理多路复用器。
-
-### 🛠 Skills
-
-1、[Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills) 🌟 35,556
-   用于学术研究的 Claude Code 技能包。这是一套面向学术研究的 Claude Code 技能包，将查文献、引用验证、数据核查、逻辑一致性检查和写作风格校准等繁琐的工作交给 AI 处理。它不是替你写论文，而是让你专注于提出问题、选定方向和解读结论。
-
-2、[DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) 🌟 69,113
-   让 AI 编程助手少写代码。该项目是把一位懒得多写一行代码的资深程序员，装进你的 AI 编程助手的技能包。让 AI 少写代码，防止过度工程化，可减少约 54% 代码量、20% 花费和 27% 时间。
-
-3、[hardikpandya/stop-slop](https://github.com/hardikpandya/stop-slop) 🌟 13,076
-   让 AI 写作少一些套路。这是一个专门用于去掉 AI 味的写作技能包，让模型在生成、润色和审稿时主动规避那些一眼像 AI 写的句式，比如套话开场白、商业黑话、夸张转折、无意义金句等。
-
-4、[earthtojake/text-to-cad](https://github.com/earthtojake/text-to-cad) 🌟 7,332
-   一句话生成 CAD 模型的技能包。这是一套赋予 AI 智能体 CAD 建模能力的技能包，支持通过自然语言或参考图片生成、修改和校验 CAD 模型。以 STEP 为主格式，可导出 STL、3MF、GLB 等文件，还支持生成 URDF/SRDF/SDF 机器人描述文件和浏览器本地预览等功能。
+5、[alibaba/page-agent](https://github.com/alibaba/page-agent) 🌟 20,796
+   你网站里的 AI 操作员。这是一个页面内嵌式 GUI Agent，专为网站开发者设计。与传统的浏览器自动化工具不同，它需要通过代码集成到网站中，集成后用户即可通过自然语言与页面进行交互。
 
 ### 📦 其它
 
-1、[echo-loop/Echo-Loop](https://github.com/echo-loop/Echo-Loop) 🌟 1,217
-   把英语音频变成听说训练的应用。这是一款专注于英语听说训练的应用，帮助用户把一段音频从完全陌生练到听懂会说。支持导入本地音频和字幕，提供逐句精听、意群划分、跟读评分、段落复述等功能，还可将生词连同原句语境一起存入闪卡随时复习。学习进度自动保存，下次打开直接从上次的句子继续，让碎片时间也能高效利用。的分享
+1、[lightpanda-io/browser](https://github.com/lightpanda-io/browser) 🌟 31,512
+   启动速度极快的无头浏览器。这是一款完全用 Zig 语言从零开发的无头浏览器，启动比 Chrome 快 11 倍、内存占用低 9 倍，支持 JavaScript 和 Web API，兼容 Playwright、Puppeteer、chromedp 等自动化工具。
 
-2、[AnthonySturdy/micro-radar](https://github.com/AnthonySturdy/micro-radar) 🌟 434
-   放在桌上的迷你航班雷达。这是一款基于 ESP32-C3 的开源桌面航班雷达。它不是真的接收 ADS-B 无线电信号，而是通过 Wi-Fi 从 OpenSky API 获取附近实时航班数据，并将其显示在 1.28 英寸的圆形屏幕上。
+2、[jarrodwatts/claude-hud](https://github.com/jarrodwatts/claude-hud) 🌟 25,980
+   实时显示 Claude Code 执行状态的插件。这是一个 Claude Code 插件，可实时显示 Claude Code 在做什么、上下文使用情况、运行的子智能体、工具调用和任务完成进度。
 
-3、[dorukkumkumoglu/optocamzero](https://github.com/dorukkumkumoglu/optocamzero) 🌟 626
-   用树莓派自制的口袋数码相机。这是一款基于 Raspberry Pi Zero 自制的迷你数码相机，小到能直接塞进口袋。它配备 1.4 英寸 LCD 屏幕和自动对焦摄像头，支持拍摄 2592×2592 像素的照片、GIF 录制、8 种滤镜和 Wi-Fi 传输照片。
+3、[zubair-trabzada/geo-seo-claude](https://github.com/zubair-trabzada/geo-seo-claude) 🌟 8,783
+   Claude Code 的 GEO 优化技能插件。这是一个 Claude Code 技能插件，以 GEO 优先、SEO 辅助的理念，通过 11 个 skills 和 5 个子智能体，帮助网站针对 AI 驱动的搜索引擎进行优化，支持评分、分析和测试等功能。
 
-4、[V-IOLE-T/tab-harbor](https://github.com/V-IOLE-T/tab-harbor) 🌟 506
-   安静的新标签页工作台。这是一款将 Chrome 新标签页变成浏览器工作台的插件，能够自动按域名分组整理标签页。支持手动分组、快捷链接、会话保存与恢复，可一键清理重复标签、标签休眠，同时所有数据均保存在本地。的分享
+4、[L42ARO/Mercury-Transforming-Drone](https://github.com/L42ARO/Mercury-Transforming-Drone) 🌟 550
+   开源的可变形无人机。这是一个开源的可变形无人机，能够在空中飞行模式和地面行驶模式之间自由切换。它基于树莓派和 ArduPilot 系统构建，集成了彩色摄像头、深度摄像头、GPS、远程操控等功能。
+
+5、[taigrr/spank](https://github.com/taigrr/spank) 🌟 4,831
+   拍一下 MacBook 它就喊疼。这是一款 Go 开发的 macOS 命令行工具，能够实时识别笔记本受到的物理拍打（震动），并即时播放设置好的音频回应，适用于 M2+ 芯片的设备。
+
+### 🎯 C#
+
+1、[lostindark/DriverStoreExplorer](https://github.com/lostindark/DriverStoreExplorer) 🌟 11,070
+   轻松管理你电脑上的驱动程序。这是一款开源的 Windows 驱动管理工具，支持快速查看、安装、卸载和备份驱动程序。它免安装、体积小，可自动比对驱动版本，识别旧版本或未使用的驱动，方便清理冗余驱动。的分享
+
+2、[MonoGame/MonoGame](https://github.com/MonoGame/MonoGame) 🌟 14,083
+   《星露谷物语》背后的游戏引擎。这是一款跨平台、开源的 .NET 游戏开发框架，是微软 XNA 框架的开源实现。它让开发者可以使用 C# 语言开发 2D 和 3D 游戏，代码几乎无需修改，即可运行在 Windows、macOS、Linux、iOS、Android、PlayStation、Xbox 和 Nintendo Switch 等平台。知名游戏《星露谷物语》、《蔚蓝》和《愤怒的铁拳 4》均基于该…
+
+3、[Timmoth/RackPeek](https://github.com/Timmoth/RackPeek) 🌟 1,606
+   极简的 IT 资产管理工具。这是一款轻量级个人 IT 基础设施管理工具，提供 WebUI 与 CLI 使用方式。它通过 YAML 文件存储数据，内置 Git 方便追踪变更历史，支持直观显示硬件参数、网络、服务信息，以及导出 SSH 配置、生成 Ansible 清单等功能。
+
+4、[STranslate/STranslate](https://github.com/STranslate/STranslate) 🌟 7,336
+   即用即走的桌面翻译与 OCR 工具。这是一款基于 WPF 开发的 Windows 翻译与 OCR 工具，集成了 Google、DeepL、OpenAI 等翻译服务，支持划词翻译、截图识别、全文翻译、生词管理和插件市场等功能。的分享
+
+### 🔵 Go
+
+1、[chenhg5/cc-connect](https://github.com/chenhg5/cc-connect) 🌟 13,340
+   把本地 AI 编程助手接入聊天应用。该项目能够将本地运行的 AI Agent 接到你常用的即时通讯平台，比如飞书、钉钉、Slack、Telegram、Discord 等主流平台。同时支持 Claude Code、Cursor、Gemini CLI 等 7 种 AI 编程助手，实现通过聊天软件远程控制本地 AI Agent，执行各种开发相关任务。的分享
+
+2、[steelbrain/ffmpeg-over-ip](https://github.com/steelbrain/ffmpeg-over-ip) 🌟 1,146
+   远程使用 GPU 加速 FFmpeg 转码。该项目能够像本地调用 FFmpeg 命令一样进行视频转码，但实际是在远程 GPU 服务器上完成的编解码，整个过程无需复杂配置和跨设备文件共享系统。
+
+3、[pinchtab/pinchtab](https://github.com/pinchtab/pinchtab) 🌟 9,367
+   连接 AI 与 Chrome 浏览器的桥梁。这是一款基于 Go 语言开发的 HTTP 服务器，能够让 AI 代理通过 API 接口或命令行的方式控制 Chrome 浏览器，支持 MCP、DOM 交互、屏幕截图和文本提取等功能，并可有效降低 Token 消耗。
+
+4、[runkids/skillshare](https://github.com/runkids/skillshare) 🌟 2,333
+   一键同步多平台 AI 技能的工具。这是一款跨工具、跨平台的 skill 同步工具，可通过一条简单的命令将技能、提示词和配置文件同步到多个 AI 工具中，支持 Claude Code、OpenClaw、Codex、OpenCode 等工具。的分享
+
+### 🦀 Rust
+
+1、[louis-e/arnis](https://github.com/louis-e/arnis) 🌟 16,571
+   将现实世界场景装进我的世界。这是一款能够将现实世界的地理数据转化为 Minecraft 游戏内地图的工具，用户仅需在交互式地图上选择区域，即可自动生成包含地形、街道、建筑和森林的游戏存档，适用于 Minecraft Java 版（1.17+）和基岩版。的分享
+
+2、[rtk-ai/rtk](https://github.com/rtk-ai/rtk) 🌟 67,355
+   降低 Token 消耗的命令行工具。这是一款用于降低 AI 编程助手 Token 消耗的工具，通过压缩常见开发命令的输出、合并重复日志、删除代码注释和多余空行等方式，可将 Token 消耗减少 60-90%，有效延长套餐配额的使用时间。
+
+3、[ruvnet/RuView](https://github.com/ruvnet/RuView) 🌟 75,998
+   利用 WiFi 信号感知人体姿态的工具。这是一款将 WiFi 无线信号转化为实时空间感知能力的工具，通过分析人体活动引起的信道状态信息变化，无需摄像头或穿戴设备，即可实时还原人体姿态，并检测心率和呼吸。
+
+4、[ogulcancelik/herdr](https://github.com/ogulcancelik/herdr) 🌟 9,029
+   位于您终端中的代理多路复用器。
+
+### ☕ Java
+
+1、[floci-io/floci](https://github.com/floci-io/floci) 🌟 14,599
+   开箱即用的 AWS 本地模拟器。这是一款免费、开源的 AWS 本地模拟器，帮助开发者在本地开发和测试 AWS 应用，它启动快、占用少、无需账号，仅需一条命令就能在本地启动 20 多种 AWS 服务的模拟环境。
+
+2、[AidanPark/openclaw-android](https://github.com/AidanPark/openclaw-android) 🌟 1,644
+   在 Android 上运行 OpenClaw。该项目提供两种在 Android 手机上运行 OpenClaw 智能体平台（非客户端）的方式。可通过 Termux 安装 glibc 动态链接器直接部署 Linux 二进制文件，也可通过直接安装打包好的 Android 应用实现一键安装 OpenClaw，后者不需要安装 Termux。
+
+3、[openrocket/openrocket](https://github.com/openrocket/openrocket) 🌟 2,959
+   开源的模型火箭模拟器。这是一款免费、开源的模型火箭（航模）仿真软件，支持模拟火箭的空气动力学性能和飞行轨迹，提供直观的火箭设计界面，可进行六自由度飞行模拟，在模拟过程中实时展示高度、速度、加速度等参数，适用于 Windows、Linux 和 macOS 平台。
 
 ### 🍎 Swift
 
-1、[Ebullioscopic/Atoll](https://github.com/Ebullioscopic/Atoll) 🌟 2,580
-   把 MacBook 刘海变成灵动岛的应用。这是一款用 SwiftUI 写的 macOS 工具，能够将 MacBook 顶部的刘海变成类似灵动岛的多功能控制中心。它平时隐藏于屏幕顶部，支持 Apple Music/Spotify 媒体控制、CPU/GPU/内存等系统监控、计时器、剪贴板历史和日历预览，并提供锁屏小组件和手势操控。
+1、[manaflow-ai/cmux](https://github.com/manaflow-ai/cmux) 🌟 23,226
+   为 AI 编程而生的 macOS 终端。这是一款基于 Ghostty 构建的 macOS 终端应用，专为同时跑多个 AI 编程会话而设计。当 AI 完成任务等待输入时，通知提醒环能帮你瞬间定位窗口。它侧边栏显示 git 分支、工作目录和端口信息，支持垂直标签页、分屏、内置浏览器等功能。
 
-2、[ggbond268/MacTools](https://github.com/ggbond268/MacTools) 🌟 333
-   住在菜单栏里的 macOS 工具集合。这是一款免费开源的 macOS 菜单栏工具，将一堆常用的系统操作和实用功能放到菜单栏里，支持防休眠、自动隐藏 Dock、系统静音、Xcode 清理、弹出磁盘、清空废纸篓、IP 查询和翻译等功能。
+2、[f/textream](https://github.com/f/textream) 🌟 3,385
+   免费开源的 macOS 提词器。这是一款免费开源的 macOS 提词器，无需注册、可离线使用、自由调整位置，提供逐词跟踪、自动滚动和声控三种模式，适用于直播、主持、播客等场景。
 
-3、[altic-dev/FluidVoice](https://github.com/altic-dev/FluidVoice) 🌟 4,933
+3、[altic-dev/FluidVoice](https://github.com/altic-dev/FluidVoice) 🌟 4,937
    最快且唯一的 macOS 听写应用程序，具有设备上 STT 和自定义训练的 AI 增强模型 - 本地 Wispr Flow 替代方案。 
 
 ### 🔷 TypeScript
 
-1、[diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) 🌟 8,537
+1、[diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) 🌟 8,550
    永远不要停止编码。
 
-2、[CoreBunch/Instatic](https://github.com/CoreBunch/Instatic) 🌟 1,534
+2、[CoreBunch/Instatic](https://github.com/CoreBunch/Instatic) 🌟 1,542
    Instatic 是一个现代的自托管视觉 CMS - 1 分钟内即可运行
 
-3、[facebook/astryx](https://github.com/facebook/astryx) 🌟 1,789
+3、[facebook/astryx](https://github.com/facebook/astryx) 🌟 1,795
    完全可定制且可供代理使用的开源设计系统
-
-### 💠 C
-
-1、[rvaiya/keyd](https://github.com/rvaiya/keyd) 🌟 5,672
-   Linux 系统级改键工具。这是一个 Linux 上的系统级键盘重映射守护进程，基于内核输入层（evdev/uinput）实现，无需依赖桌面环境，配置在 X11、Wayland 和 TTY 终端中均可生效。支持按下、长按设置不同动作、自定义按键组合，以及为不同键盘单独配置按键映射规则等功能。
-
-2、[Mbed-TLS/mbedtls](https://github.com/Mbed-TLS/mbedtls) 🌟 6,755
-   灵活易用的 TLS 库。该项目是用 C 语言编写的加密库，可用于实现加密原语、X.509 证书操作以及 SSL/TLS 和 DTLS 协议。它体积小巧、易于移植，并提供丰富的示例，适用于物联网和嵌入式系统等资源有限的设备。
 
 ### ⚡ C++
 
-1、[luanti-org/luanti](https://github.com/luanti-org/luanti) 🌟 13,110
-   开源体素游戏创作平台。这是一个开源体素游戏引擎，可以用 Lua 快速做出自己的 3D 方块游戏。它内置内容商店可直接下载来自社区的模组和游戏，支持单人、局域网和多人联机，可在 Windows、macOS、Linux 和 Android 上运行。
+1、[google-deepmind/mujoco](https://github.com/google-deepmind/mujoco) 🌟 14,037
+   开源的高性能通用物理引擎。该项目是由 Google DeepMind 开源的通用物理仿真引擎，专注于复杂关节结构与环境交互模拟。它内置可视化交互式界面，支持使用 MJCF 描述场景，适用于机器人、具身智能、生物力学、动画和机器学习等场景。
 
-2、[alpha-liu-01/SpeedyNote](https://github.com/alpha-liu-01/SpeedyNote) 🌟 1,326
-   老旧平板也能用的手写笔记工具。这是一款专为低成本设备优化的跨平台手写笔记应用，目标是在老旧平板上实现接近 iPad 的书写体验。它支持压感书写、多图层、PDF 批注和手写 OCR，可在 Windows、macOS、Linux、Android 和 iPadOS 上运行。作者想让无纸化学习平民化，同时为那些被遗忘在角落的旧设备注入新的活力。
+2、[RunanywhereAI/RCLI](https://github.com/RunanywhereAI/RCLI) 🌟 1,526
+   专为 macOS 打造的本地语音 AI 助手。这是一款针对苹果芯片优化的本地语音 AI 命令行工具，集成了语音识别、LLM、VLM 和语音合成功能，全流程本地推理不依赖云端服务，支持语音控制音乐播放、创建提醒、调节音量等操作，并可分析屏幕或图片内容。
+
+### 🟣 Kotlin
+
+1、[Steve-Mr/EmojiFace](https://github.com/Steve-Mr/EmojiFace) 🌟 740
+   自动识别图片人脸并替换为 Emoji 的应用。这是一款基于 YOLOv8 模型实现的 Android 人脸打码应用，能够自动检测图片中的人脸并用 Emoji 表情进行覆盖，同时支持高斯模糊、像素化及半色调网点等多种模糊效果。的分享
+
+2、[plainhub/plain-app](https://github.com/plainhub/plain-app) 🌟 5,907
+   在浏览器中管理你的手机。这是一款 Kotlin 开发的 Android 应用，让你可以在同一局域网内通过任意电脑上的浏览器，轻松查看和管理手机中的联系人、短信、通话记录、文件和照片，并支持屏幕镜像、远程操控、文件传输等功能。的分享
 
 ### 🌐 HTML
 
-1、[hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset) 🌟 6,661
+1、[hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset) 🌟 6,694
    包含 433 项健身练习的综合数据集。
 
-2、[ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) 🌟 127,326
+2、[ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) 🌟 127,330
    具有 devops 和 infradev 感兴趣的免费级别的 SaaS、PaaS 和 IaaS 产品列表
 
 ### 🐚 Shell
 
-1、[msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) 🌟 120,925
+1、[msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) 🌟 120,956
    触手可及的完整人工智能机构 - 从前端向导到 Reddit 社区忍者，从奇思妙想的注入者到现实检查者。
 
-2、[obra/superpowers](https://github.com/obra/superpowers) 🌟 242,517
+2、[obra/superpowers](https://github.com/obra/superpowers) 🌟 242,532
    有效的代理技能框架和软件开发方法。
 
-### 🎯 C#
+### 💠 C
 
-1、[snownico0722/PaperTodo](https://github.com/snownico0722/PaperTodo) 🌟 496
-   极简的 Windows 桌面便签工具。这是一款极简的 Windows 桌面便签工具，每张便签是独立无边框浮动窗口，无主窗口、无账号、无分类管理，内容自动保存。支持待办纸和笔记纸（轻量 Markdown 高亮）两种形态，可折叠成置顶小胶囊，自动贴到屏幕边缘。的分享
-
-### 🟣 Kotlin
-
-1、[XingHeYuZhuan/shiguangschedule](https://github.com/XingHeYuZhuan/shiguangschedule) 🌟 348
-   极简的 Android 课程表。这是一款面向中国高校师生的开源 Android 课程表，可通过适配脚本一键导入，不同学校教务系统的课程数据，支持今日课表、桌面小组件、上课自动静音或开启勿扰模式等功能。的分享
+1、[carlini/printf-tac-toe](https://github.com/carlini/printf-tac-toe) 🌟 2,514
+   把井字棋塞进一次 printf 调用。这是一个展示 C 语言黑魔法的开源项目，在单个 printf 调用内完成了游戏逻辑运算、变量赋值、胜负判断和界面渲染，同时支持数字键落子、走法检测和刷新棋盘功能。
 
 ### 📦 Haskell
 
-1、[simplex-chat/simplex-chat](https://github.com/simplex-chat/simplex-chat) 🌟 17,336
+1、[simplex-chat/simplex-chat](https://github.com/simplex-chat/simplex-chat) 🌟 17,342
    SimpleX - 第一个无需任何类型的用户标识符即可运行的消息传递网络 - 设计为 100% 私密！ 
 
 ### 📦 Jupyter Notebook
 
-1、[microsoft/AI-For-Beginners](https://github.com/microsoft/AI-For-Beginners) 🌟 49,376
+1、[microsoft/AI-For-Beginners](https://github.com/microsoft/AI-For-Beginners) 🌟 49,385
    12 周，24 节课，全民人工智能！
 
 

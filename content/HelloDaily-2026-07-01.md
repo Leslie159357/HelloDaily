@@ -25,28 +25,28 @@
    终端里的交互式数据文件浏览工具。这是一款 Python 开发的多功能查看数据文件的命令行工具，能够直观且流畅地浏览百万行的数据文件，支持 csv、sqlite、json、xlsx 和 hdf5 等多种数据格式，部分格式需要额外安装相应的 Python 库。
 
 5、[usestrix/strix](https://github.com/usestrix/strix) 🌟 28,130
-   Open-source AI penetration testing tool to find and fix your app’s vulnerabilities.
+   开源 AI 渗透测试工具，发现并修复应用漏洞
 
 6、[browser-use/video-use](https://github.com/browser-use/video-use) 🌟 12,600
-   Edit videos with coding agents
+   用编码智能体编辑视频
 
 7、[xbtlin/ai-berkshire](https://github.com/xbtlin/ai-berkshire) 🌟 7,493
    AI 时代的伯克希尔：基于 Claude Code / Codex 的价值投资研究框架。巴菲特·芒格·段永平·李录四大师方法论 + 多Agent并行研究。| AI-era Berkshire: a value investing research framework built for Claude Code / Codex. 4 masters' methodologies + multi-ag…
 
 8、[Mebus/cupp](https://github.com/Mebus/cupp) 🌟 6,102
-   Common User Passwords Profiler (CUPP)
+   常见用户密码分析工具（CUPP）
 
 9、[google/agents-cli](https://github.com/google/agents-cli) 🌟 4,197
-   The CLI and skills that turn any coding assistant into an expert at creating, evaluating, and deploying AI agents on Google Cloud.
+   Google Cloud AI 代理 CLI 工具包，轻松创建、评估和部署
 
 10、[roboflow/supervision](https://github.com/roboflow/supervision) 🌟 45,913
-   We write your reusable computer vision tools. 💜
+   可复用的计算机视觉工具库 💜
 
 11、[HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) 🌟 15,795
    "Vibe-Trading: Your Personal Trading Agent"
 
 12、[Robbyant/lingbot-map](https://github.com/Robbyant/lingbot-map) 🌟 8,871
-   A feed-forward 3D foundation model for reconstructing scenes from streaming data
+   前馈式 3D 基础模型，从流数据重建场景
 
 ### 🟨 JavaScript
 
@@ -161,18 +161,18 @@
    免费开源的 macOS 提词器。这是一款免费开源的 macOS 提词器，无需注册、可离线使用、自由调整位置，提供逐词跟踪、自动滚动和声控三种模式，适用于直播、主持、播客等场景。
 
 3、[altic-dev/FluidVoice](https://github.com/altic-dev/FluidVoice) 🌟 4,932
-   Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model - Local Wispr Flow alternative. One ⭐ takes us a long way :)) Windows, iOS and Linux coming soon.
+   macOS 最快本地语音转文字听写应用，本地 Wispr Flow 替代品
 
 ### 🔷 TypeScript
 
 1、[diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) 🌟 8,530
-   Never stop coding. Free AI gateway: one endpoint, 231+ providers (50+ free), connect Claude Code, Codex, Cursor, Cline & Copilot to FREE Claude/GPT/Gemini. RTK+Caveman stacked compression saves 15-95%…
+   免费 AI 网关：一个端点接入 231+ 供应商，连接 Claude Code 到 Copilot 等工具
 
 2、[CoreBunch/Instatic](https://github.com/CoreBunch/Instatic) 🌟 1,533
-   Instatic is a modern self-hosted visual CMS - get it running in 1 minute
+   Instatic 现代化自托管可视化 CMS，1 分钟部署
 
 3、[facebook/astryx](https://github.com/facebook/astryx) 🌟 1,784
-   An open source design system that's fully customizable and agent ready
+   开源设计系统，完全可定制且适配 AI 智能体
 
 ### ⚡ C++
 
@@ -193,18 +193,18 @@
 ### 🌐 HTML
 
 1、[hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset) 🌟 6,650
-   A comprehensive dataset of 433 fitness exercises. Each entry includes name, category, target muscle group, equipment, instructions, thumbnail image, and animation video.
+   433 种健身动作综合数据集，含名称、类别、目标肌群和教程视频
 
 2、[ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) 🌟 127,322
-   A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev
+   面向 DevOps 的免费 SaaS/PaaS/IaaS 服务清单
 
 ### 🐚 Shell
 
 1、[msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) 🌟 120,910
-   A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, a…
+   一站式 AI 代理团队，从前端到社区运营各具专长
 
 2、[obra/superpowers](https://github.com/obra/superpowers) 🌟 242,508
-   An agentic skills framework & software development methodology that works.
+   智能体技能框架与软件开发方法论
 
 ### 💠 C
 
@@ -214,7 +214,7 @@
 ### 📦 Haskell
 
 1、[simplex-chat/simplex-chat](https://github.com/simplex-chat/simplex-chat) 🌟 17,336
-   SimpleX - the first messaging network operating without user identifiers of any kind - 100% private by design! iOS, Android and desktop apps 📱!
+   SimpleX — 首个无用户标识的消息网络，100% 隐私保护
 
 ### 📦 Jupyter Notebook
 

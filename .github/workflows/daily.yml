@@ -24,6 +24,8 @@ jobs:
         run: python3 hellodaily.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
 
       - name: 提交并推送
         run: |

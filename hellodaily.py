@@ -164,30 +164,39 @@ def fetch_trending():
 
 
 def translate_descriptions(repos):
-    """翻译英文简介为中文（只对 Trending 来的项目）"""
-    import json as json_mod
-    api_key = os.environ.get("OPENAI_API_KEY", "")
-    base_url = os.environ.get("OPENAI_BASE_URL", "https://api.siliconflow.cn/v1")
-    if not api_key:
-        return repos
-
-    # 只翻译还没中文的（已有中文的不动）
+    """翻译英文简介为中文（免费版，不需要 API key）"""
+    # 只翻译还没中文的
     to_translate = [(i, r) for i, r in enumerate(repos) if r["desc"] and not any('\u4e00' <= c <= '\u9fff' for c in r["desc"])]
     if not to_translate:
         return repos
 
-    # 按批次翻译，每批 10 个
+    # 尝试用 LLM API 翻译（如果有 key）
+    api_key = os.environ.get("OPENAI_API_KEY", "") or os.environ.get("OPENROUTER_API_KEY", "")
+    if api_key:
+        base_url = os.environ.get("OPENAI_BASE_URL", "https://api.siliconflow.cn/v1")
+        model = os.environ.get("TRANSLATE_MODEL", "deepseek-ai/DeepSeek-V3")
+        print(f"  🤖 使用 LLM 翻译 ({model})...")
+        return _translate_via_llm(repos, to_translate, api_key, base_url, model)
+
+    # 没有 API key → 用免费 Google Translate
+    print("  🌐 使用免费 Google Translate 翻译...")
+    return _translate_via_google(repos, to_translate)
+
+
+def _translate_via_llm(repos, to_translate, api_key, base_url, model):
+    """用 LLM API 批量翻译"""
+    import json as json_mod
     batch_size = 10
     for batch_start in range(0, len(to_translate), batch_size):
         batch = to_translate[batch_start:batch_start + batch_size]
         lines = [f"{j+1}. {r['desc']}" for j, (_, r) in enumerate(batch)]
-        prompt = "将以下英文项目简介翻译成中文（30-60字），直接给出译文，不要编号和项目名：\n\n" + "\n".join(lines)
+        prompt = "将以下英文项目简介翻译成简洁的中文（20-40字），直接给出译文，不要编号和项目名：\n\n" + "\n".join(lines)
 
         data = json_mod.dumps({
-            "model": "deepseek-ai/DeepSeek-V3",
+            "model": model,
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.1,
-            "max_tokens": 2048,
+            "max_tokens": 1024,
         }).encode("utf-8")
 
         req = urllib.request.Request(
@@ -203,15 +212,42 @@ def translate_descriptions(repos):
                 line = line.strip()
                 if not line:
                     continue
-                # 去掉可能的编号
                 line = re.sub(r'^\d+[.、\s]*', '', line)
                 if j < len(batch) and line:
                     idx = batch[j][0]
                     repos[idx]["desc"] = line[:200]
         except Exception as e:
-            print(f"  ⚠️ 翻译失败: {e}")
+            print(f"  ⚠️ LLM 翻译失败: {e}")
             break
+    return repos
 
+
+def _translate_via_google(repos, to_translate):
+    """用免费 Google Translate 逐条翻译（不需要 API key）"""
+    import urllib.parse
+    for idx, r in to_translate:
+        desc = r["desc"].strip()
+        if not desc:
+            continue
+        try:
+            # 用 Google Translate 免费接口
+            url = "https://translate.googleapis.com/translate_a/single"
+            params = {
+                "client": "gtx",
+                "sl": "en",
+                "tl": "zh-CN",
+                "dt": "t",
+                "q": desc[:800],  # 截断超长文本
+            }
+            full_url = f"{url}?{urllib.parse.urlencode(params)}"
+            req = urllib.request.Request(full_url, headers={"User-Agent": "Mozilla/5.0"})
+            resp = urllib.request.urlopen(req, timeout=10).read().decode("utf-8")
+            # 解析返回的 JSON 数组
+            translated = json_mod.loads(resp)[0][0][0]
+            repos[idx]["desc"] = translated[:200]
+        except Exception as e:
+            print(f"  ⚠️ Google 翻译失败: {desc[:30]}... → {e}")
+            # 保留原文
     return repos
 
 
